@@ -1,0 +1,3 @@
+class Report < ActiveRecord::Base
+  attr_accessible :college, :content, :dep, :hit, :intro, :list, :page, :price, :rate, :title, :univ, :user_id, :year
+end

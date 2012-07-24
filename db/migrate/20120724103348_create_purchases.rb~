@@ -1,0 +1,13 @@
+class CreatePurchases < ActiveRecord::Migration
+  def change
+    create_table :purchases do |t|
+      t.integer :user_id
+      t.integer :report_id
+      t.boolean :isFeedback
+      t.boolean :isPaid
+      t.integer :type
+
+      t.timestamps
+    end
+  end
+end

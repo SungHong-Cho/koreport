@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  total_user: 1
+  total_page: 1
+  sold_page: 1
+  total_income: 1
+
+two:
+  total_user: 1
+  total_page: 1
+  sold_page: 1
+  total_income: 1
