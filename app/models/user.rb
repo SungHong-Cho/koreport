@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_one :seller
   has_many :purchases
-  has_many :buckets
+  has_one  :bucket
   has_many :reports
   has_many :questions
   has_many :feedbacks

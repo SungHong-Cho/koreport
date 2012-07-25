@@ -4,5 +4,5 @@ class Bucket < ActiveRecord::Base
   set_primary_keys :report_id, :user_id
 
   belongs_to :user
-  belongs_to :report
+  has_many :reports
 end

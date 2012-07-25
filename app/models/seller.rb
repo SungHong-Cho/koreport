@@ -1,5 +1,5 @@
 class Seller < ActiveRecord::Base
-  attr_accessible :avatar
+  attr_accessible :name, :rate, :avatar
 
   has_attached_file :avatar
 
