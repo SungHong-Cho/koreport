@@ -5,11 +5,18 @@ Koreport::Application.routes.draw do
 
   devise_for :users
 
-  resources :users, :only => [:index, :show]
-  resources :packages
-  resources :reports
-  resources :purchases, :only => [:index, :create, :new]
+  resources :users, :only => [:index, :show] do
+    member do
+      get 'bucket'
+      post 'bucket', :action => :add_bucket
+    end
+  end
 
+  resources :packages
+  resources :reports do
+    get 'view', :on => :member
+  end
+  resources :purchases, :only => [:index, :create, :new]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
