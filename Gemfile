@@ -68,8 +68,12 @@ gem 'omniauth-facebook'
 
 gem 'haml'
 
+gem 'haml-rails'
+
 gem 'acts-as-taggable-on', '~> 2.3.1'
 
 group :assets do
   gem 'jquery-ui-rails'
 end
+
+gem 'composite_primary_keys'

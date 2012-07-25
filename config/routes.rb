@@ -1,5 +1,15 @@
 Koreport::Application.routes.draw do
+  root :to => 'koreport#index'
+
+  match 'search' => 'koreport#search', :as => :search
+
   devise_for :users
+
+  resources :users, :only => [:index, :show]
+  resources :packages
+  resources :reports
+  resources :purchases, :only => [:index, :create, :new]
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -1,0 +1,78 @@
+%fieldset
+  = form_for Report.new, :html => { class: "form-horizontal", :multipart => true } do |f|
+    .control-group
+      = f.label :title, class: "control-label"
+      .controls
+        = f.text_field :title
+
+    .control-group
+      = f.label :university, class: "control-label"
+      .controls
+        = f.text_field :univ
+
+    .control-group
+      = f.label :college, class: "control-label"
+      .controls
+        = f.text_field :college
+
+    .control-group
+      = f.label :dep, class: "control-label"
+      .controls
+        = f.text_field :dep
+
+    .control-group
+      = f.label :year, class: "control-label"
+      .controls
+        = f.text_field :year
+
+    .control-group
+      = f.label :price, class: "control-label"
+      .controls
+        = f.text_field :price
+
+    .control-group
+      = f.label :page, class: "control-label"
+      .controls
+        = f.text_field :page
+
+    .control-group
+      = f.label :introduction, class: "control-label"
+      .controls
+        = f.text_area :intro
+
+    .control-group
+      = f.label :list, class: "control-label"
+      .controls
+        = f.text_area :list
+
+    .control-group
+      = f.label :content, class: "control-label"
+      .controls
+        = f.text_area :content
+
+    .control-group
+      = f.label :document1, class: "control-label"
+      .controls
+        = f.file_field :document1
+
+    .control-group
+      = f.label :document2, class: "control-label"
+      .controls
+        = f.file_field :document2
+
+    .control-group
+      = f.label :document3, class: "control-label"
+      .controls
+        = f.file_field :document3
+
+    .control-group
+      = f.label :document4, class: "control-label"
+      .controls
+        = f.file_field :document4        
+
+    .control-group
+      = f.label :document5, class: "control-label"
+      .controls
+        = f.file_field :document5        
+
+    = f.submit "Create Report!", class: "btn btn-large btn-primary"

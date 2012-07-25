@@ -1,0 +1,9 @@
+.user-information
+  .row
+    .span8.email
+      %h2= current_user.email
+    .span2.edit-profile
+      = link_to "edit Profile", edit_user_registration_path(current_user), class: "btn btn-large btn-primary"
+    .span2
+      %h2 temp
+  

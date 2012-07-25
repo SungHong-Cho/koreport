@@ -1,0 +1,33 @@
+.purchase-list
+  .table-head
+    .row
+      .span6
+        %h3 title
+      .span2
+        %h3 seller
+      .span1
+        %h3 page
+      .span1
+        %h3 preview
+      .span2
+        %h3 price
+  .table-body
+    - @reports.each_with_index do |report, index|
+      .row
+        .span6
+          %p= report.title
+        .span2
+          %p= report.user.seller.name
+        .span1
+          %p= report.page
+        .span1
+          %button.btn.btn-danger{'data-toggle' => 'collapse', 'data-target' => "#content#{index}"} preview
+        .span2
+          %p= "#{report.price} WON"
+      .row
+        .span12.collapse{ :id => "content#{index}"}= report.content
+
+  .overall-information
+    .row
+      .span12
+        %h2= "Total : #{@reports.map(&:price).inject(0, :+)} WON"

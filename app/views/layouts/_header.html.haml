@@ -1,0 +1,43 @@
+%header.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{'data-toggle' => 'collapse', 'data-target' => '.nav-collapse'}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+      = link_to image_tag("brand.png", alt: "koreport"), root_path, class: "brand"
+
+      .nav-collapse.pull-right
+        - if user_signed_in?
+          %ul.nav
+            - unless current_user.seller.nil?
+              %li
+                = link_to "Make Report!", new_report_path
+            %li.dropdown#fat-menu
+              %a.dropdown-toggle{'data-toggle' => 'dropdown'}
+                %i.icon-user.icon-large.icon-white
+                = current_user.email
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  = link_to user_path(current_user) do
+                    %i.icon-user.icon-large
+                    My page
+                %li
+                  = link_to '' do
+                    %i.icon-lock.icon-large
+                    Security Setting
+                %li.divider
+                %li
+                  = link_to '' do
+                    %i.icon-money.icon-large
+                    Account Setting
+                %li
+                  = link_to destroy_user_session_path, :method => 'delete' do
+                    %i.icon-off.icon-large
+                    Sign out
+        - else
+          %ul.nav
+            %li have an account?
+            %li= link_to "Sign in", new_user_session_path

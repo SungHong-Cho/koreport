@@ -1,0 +1,36 @@
+.search-section
+  .row
+    .span12.search-form
+      = form_tag search_path, class: "form-inline" do
+        = text_field_tag :search, params[:search], class: "input span4 search-query", placeholder: "year, university, major..."
+        = submit_tag "Search!!", class: "btn btn-primary"
+.search-phrase
+  .row
+    .span12    
+      %p= "searching of #{params[:search]}, we found 4235 document." unless params[:search].blank?
+    
+.search-result
+  .row
+    .span12
+      %h2.list-title 2012 hanyang univ computer science
+      %button{class: "btn btn-info", 'data-toggle' => "collapse", 'data-target' =>"#list1"} fold!
+      
+%ul.unstyled.search-list#list1
+  - @report.each do |report|
+    %li
+      .row
+        .span1.profile
+          %h5 HIHI
+          %h5 A Class
+        .span9.content
+          %h4= report.title
+          %p= report.intro
+        .span2.panel.center
+          %p
+            %span.label.label-large.label-success.price= "#{report.price} WON"          
+            %span.badge.label-large.page= "#{report.page} Page"          
+          %p
+            %a.btn preview
+            %a.btn jjim!
+          %p
+            = link_to "See Detail", report, class: "btn btn-large btn-primary see-detail"

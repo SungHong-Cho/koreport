@@ -1,0 +1,68 @@
+.top-control-and-tag
+  .row
+    .span3.back
+      = link_to search_path, class: "btn btn-large btn-primary" do
+        %i.icon-chevron-left.icon-white.icon-large
+        %span Back
+      = link_to '#', class: "btn btn-large btn-info" do
+        %i.icon-check.icon-white.icon-large
+        %span Check!
+    .span1.tag
+      %span.label.label-info Tags
+    .span8.tags
+
+
+.desc-info
+  .row
+    .span10
+      .row
+        .span10
+          .page-header
+            %h2.title= @report.title
+      .row.information
+        .span2.page
+          %i.icon-file.icon-large
+          %span= "#{@report.page} page"
+        .span2.file-type
+          %i.icon-inbox.icon-large
+          %span.file-type hangul file
+        .span2.created-time
+          %i.icon-time.icon-large
+          %span.created-time= @report.created_at.strftime("%F")
+
+    .span2.price-and-download
+      %ul.unstyled
+        %li
+          %span.label.label-success.price= "#{@report.price} WON"
+        %li
+          %span.badge.label-large.page= "#{@report.page} Page"
+          %br
+        %li
+          = link_to new_purchase_path, class: "btn btn-large btn-success" do
+            %i.icon-download-alt.icon-white
+            %span Download!
+
+.desc-content
+  .row
+    .span12
+      .row
+        .span6.intro-and-profile
+          .intro
+            = image_tag("intro.png")
+            %h4= @report.intro
+          .profile
+            %p image
+            /= image_tag(@report.user.avatar.url(:thumbnail))
+            %span= @report.user.email
+        .span6.content-table
+          = image_tag("list.png")
+          %p= @report.list
+  .row
+    .span12
+      .content
+        = image_tag("content.png")
+        %h4= @report.content
+  .row
+    .span12
+      .comment
+        = image_tag("comment.png")

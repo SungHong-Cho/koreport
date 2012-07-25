@@ -1,0 +1,38 @@
+.hero-unit.hero-logo
+  = image_tag "logo.png", alt: "koreport Logo", width: "200px", height: "200px"
+  %h1 Koreport
+  %p Search report what you want by using keyword.
+  = form_tag search_path, class: "form-search"  do
+    = text_field_tag :search, "", class: "input span6 search-query", placeholder: "year, university, major..."
+    = submit_tag "Search!", class: "btn btn-primary"
+
+.center.middle-title
+  %h2 Welcome To Koreport!!
+
+%ul.thumbnails
+  %li.span4
+    .thumbnail
+      = image_tag "howToBuy.jpg", alt: "howToBuy"
+      .caption
+        %h5 How To Buy Report.
+
+  %li.span4
+    .thumbnail
+      = image_tag "howToBuy.jpg", alt: "howToBuy"
+      .caption
+        %h5 How To Buy Report.
+  
+  %li.span4
+    .thumbnail
+      = image_tag "howToBuy.jpg", alt: "howToBuy"
+      .caption
+        %h5 How To Buy Report.
+
+
+.hero-unit.sign-up
+  %h2 Sign Up Now!!
+  %p the take what you want.
+  = form_for(User.new, as: :user, url: registration_path(:user), html: {class: "form-inline"}) do |f|
+    = f.email_field :email, placeholder: "e-mail", class: "span3 input"
+    = f.password_field :password, placeholder: "password", class: "span3 input"
+    = f.submit "Sign Up!", class: "btn btn-primary"
