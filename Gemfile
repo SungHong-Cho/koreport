@@ -5,18 +5,19 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development do
-  gem 'sqlite3'
-end
+#group :development do
+#  gem 'sqlite3'
+#end
 
-group :test do
-  gem 'sqlite3'
-end
+#group :test do
+#  gem 'sqlite3'
+#end
 
-group :production do
-  gem 'pg', '0.12.2'
-end
+#group :production do
+#  gem 'pg', '0.12.2'
+#end
 
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
