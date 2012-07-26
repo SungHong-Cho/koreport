@@ -5,4 +5,6 @@ class Package < ActiveRecord::Base
   
   has_attached_file :thumb_img
   has_attached_file :content_img
+
+  validates :name, :price, :presence => true
 end

@@ -11,8 +11,11 @@ class User < ActiveRecord::Base
 
   has_one :seller
   has_many :purchases
-  has_one  :bucket
+  has_many :buckets
   has_many :reports
   has_many :questions
   has_many :feedbacks
+
+  validates :email, :password, :presence => true
+  validates :password, :confirmation => true
 end
