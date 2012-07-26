@@ -1,2 +1,24 @@
-%h1 Packages#new
-%p Find me in app/views/packages/new.html.haml
+= form_for Package.new, html: { class: "form-horizontal" }  do |f|
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name
+
+  .control-group
+    = f.label :price, class: 'control-label'
+    .controls
+      = f.text_field :price
+      
+  .control-group
+    = f.label :thumb_img, class: 'control-label'
+    .controls
+      = f.file_field :thumb_img
+      
+  .control-group
+    = f.label :content_img, class: 'control-label'
+    .controls
+      = f.file_field :content_img        
+
+  = f.submit 'make package', class: 'btn btn-large btn-primary'
+
+    

@@ -1,4 +1,3 @@
-
 class UsersController < ApplicationController
   def index
   end
@@ -8,15 +7,17 @@ class UsersController < ApplicationController
   end
 
   def bucket
-    @reports = current_user.bucket.reports.all
+    @buckets = current_user.buckets.all
+    @report_ids = @buckets.collect {|bucket| bucket.report_id}
+    @reports = Report.find(@report_ids)
   end
 
   def add_bucket
-    if user_signed_in? && current_user.id == params[:user_id]
-      current_user.create_bucket(report_id: params[:report_id])
+    if user_signed_in?
+      current_user.buckets.create(report_id: params[:report_id])
       redirect_to bucket_user_path(current_user)
     else
-      redirect_to sign_in_path
+      redirect_to new_user_session_path
     end
   end
 end

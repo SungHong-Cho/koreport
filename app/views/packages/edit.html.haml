@@ -1,2 +1,22 @@
-%h1 Packages#edit
-%p Find me in app/views/packages/edit.html.haml
+= form_for @package, html: { class: "form-horizontal" }  do |f|
+  .control-group
+    = f.label :name, class: 'control-label'
+    .controls
+      = f.text_field :name, placeholder: "#{@package.name}"
+
+  .control-group
+    = f.label :price, class: 'control-label'
+    .controls
+      = f.text_field :price, placeholder: "#{@package.price}"
+      
+  .control-group
+    = f.label :thumb_img, class: 'control-label'
+    .controls
+      = f.file_field :thumb_img
+      
+  .control-group
+    = f.label :content_img, class: 'control-label'
+    .controls
+      = f.file_field :content_img        
+
+  = f.submit 'edit package', class: 'btn btn-large btn-primary'
