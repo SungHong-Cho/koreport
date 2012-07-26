@@ -63,13 +63,13 @@ ActiveRecord::Schema.define(:version => 20120726041715) do
   end
 
   create_table "purchases", :id => false, :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.integer  "report_id",  :null => false
-    t.boolean  "isFeedback"
-    t.boolean  "isPaid"
-    t.integer  "type",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",                       :null => false
+    t.integer  "report_id",                     :null => false
+    t.boolean  "isFeedback", :default => false
+    t.boolean  "isPaid",     :default => false
+    t.integer  "type",                          :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "questions", :force => true do |t|
