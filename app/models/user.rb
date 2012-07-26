@@ -15,4 +15,7 @@ class User < ActiveRecord::Base
   has_many :reports
   has_many :questions
   has_many :feedbacks
+
+  validates :email, :password, :presence => true
+  validates :password, :confirmation => true
 end

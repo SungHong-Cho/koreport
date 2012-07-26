@@ -4,5 +4,7 @@ class Bucket < ActiveRecord::Base
   set_primary_keys :report_id, :user_id
 
   belongs_to :user
-  has_many :reports
+  belongs_to :report
+
+  validates :report_id, :user_id, :presence => true
 end

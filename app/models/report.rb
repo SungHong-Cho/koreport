@@ -9,4 +9,6 @@ class Report < ActiveRecord::Base
   has_attached_file :document3
   has_attached_file :document4
   has_attached_file :document5
+
+  validates :price, :page, :title, :presence => true
 end
