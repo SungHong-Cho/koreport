@@ -10,7 +10,7 @@ set :use_sudo, false
 
 set :scm, "git"
 set :repository, "git@github.com:darkzin/#{application}.git"
-set :branch, "edit_config"
+set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
