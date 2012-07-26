@@ -14,11 +14,7 @@ gem 'rails'
 #end
 
 #group :production do
-<<<<<<< HEAD
 #  gem 'sqlite3'
-=======
-#  gem 'pg', '0.12.2'
->>>>>>> 25046f0548f267f5d91cc74844c56d947287a9e9
 #end
 
 gem 'pg'
