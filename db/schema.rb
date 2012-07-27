@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726041715) do
+ActiveRecord::Schema.define(:version => 20120725072444) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20120726041715) do
 
   create_table "buckets", :force => true do |t|
     t.integer  "user_id",    :null => false
-    t.string   "report_id",  :null => false
+    t.integer  "report_id",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(:version => 20120726041715) do
   end
 
   create_table "first_categories", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "packages", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                     :null => false
     t.integer  "price"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
@@ -62,19 +62,19 @@ ActiveRecord::Schema.define(:version => 20120726041715) do
     t.integer "report_id"
   end
 
-  create_table "purchases", :id => false, :force => true do |t|
-    t.integer  "user_id",                       :null => false
-    t.integer  "report_id",                     :null => false
+  create_table "purchases", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "item_id",                          :null => false
+    t.string   "item_type",  :default => "report"
     t.boolean  "isFeedback", :default => false
     t.boolean  "isPaid",     :default => false
-    t.integer  "type",                          :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   create_table "questions", :force => true do |t|
     t.integer  "user_id",    :null => false
-    t.string   "title"
+    t.string   "title",      :null => false
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(:version => 20120726041715) do
 
   create_table "second_categories", :force => true do |t|
     t.integer  "first_category_id", :null => false
-    t.string   "name"
+    t.string   "name",              :null => false
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(:version => 20120726041715) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "statistics", :id => false, :force => true do |t|
+  create_table "statistics", :force => true do |t|
     t.integer  "total_user"
     t.integer  "total_page"
     t.integer  "sold_page"

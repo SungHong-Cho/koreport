@@ -22,9 +22,9 @@
                 - unless current_user.seller.nil?
                   %li
                     = link_to "Make Report!", new_report_path
-                - if current_user.seller.name == "koreport"
-                  %li
-                    = link_to "Package Management", packages_path
+                    - if current_user.seller.name == "koreport"
+                      %li
+                        = link_to "Package Management", packages_path
                 %li
                   = link_to user_path(current_user) do
                     %i.icon-user.icon-large
