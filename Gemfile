@@ -77,4 +77,4 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
-gem 'composite_primary_keys'
+# gem 'composite_primary_keys'
