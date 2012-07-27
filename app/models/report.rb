@@ -3,6 +3,8 @@ class Report < ActiveRecord::Base
 
   has_and_belongs_to_many :packages
   belongs_to :user
+  has_many :buckets
+  has_many :purchases, :as => :item
 
   has_attached_file :document1
   has_attached_file :document2

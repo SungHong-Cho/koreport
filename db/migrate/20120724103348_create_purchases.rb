@@ -1,11 +1,9 @@
 class CreatePurchases < ActiveRecord::Migration
   def change
     create_table :purchases, :id => false  do |t|
-      t.integer :user_id, :null => false
-      t.integer :report_id, :null => false
-      t.boolean :isFeedback
-      t.boolean :isPaid
-      t.integer :type, :null => false
+      t.references :item, :polymorphic => { :default => 'report' }, :null => false
+      t.boolean :isFeedback, :default => false
+      t.boolean :isPaid, :default => false
 
       t.timestamps
     end

@@ -11,9 +11,8 @@
       .nav-collapse.pull-right
         - if user_signed_in?
           %ul.nav
-            
             %li
-              = link_to "Cart", bucket_user_path(current_user)
+              = link_to "Cart", buckets_path(current_user)
             %li.dropdown#fat-menu
               %a.dropdown-toggle{'data-toggle' => 'dropdown'}
                 %i.icon-user.icon-large.icon-white

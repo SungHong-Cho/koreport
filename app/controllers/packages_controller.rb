@@ -16,6 +16,7 @@ class PackagesController < ApplicationController
   end
 
   def new
+    
   end
 
   def edit
@@ -27,6 +28,10 @@ class PackagesController < ApplicationController
   end
 
   def update
+    @package = Package.find(params[:package][:id])
+    @report = Report.find(params[:package][:report_id])
+    @package.reports << @report
+    redirect_to packages_path
   end
 
   def destroy

@@ -1,8 +1,8 @@
 class CreateSecondCategories < ActiveRecord::Migration
   def change
     create_table :second_categories do |t|
-      t.integer :first_category_id, :null => false
-      t.string :name
+      t.references :first_category, :null => false
+      t.string :name, :null => false
 
       t.timestamps
     end

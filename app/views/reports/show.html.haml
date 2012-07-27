@@ -11,6 +11,12 @@
       %span.label.label-info Tags
     .span8.tags
 
+- if user_signed_in? && not(current_user.seller.nil?)
+  = form_for @package, :html => { :method => :put }, :class => "form-inline" do |f|
+    = f.label "select package that wish to add this report"
+    = collection_select(:package, :id, @packages, :id, :name)
+    = f.hidden_field(:report_id, :value => @report.id) 
+    = f.submit "Add report!", class: "btn btn-success"
 
 .desc-info
   .row
