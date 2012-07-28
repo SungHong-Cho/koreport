@@ -2,9 +2,7 @@
   = image_tag "logo.png", alt: "koreport Logo", width: "200px", height: "200px"
   %h1 Koreport
   %p Search report what you want by using keyword.
-  = form_tag search_path, class: "form-search"  do
-    = text_field_tag :search, "", class: "input span6 search-query", placeholder: "year, university, major..."
-    = submit_tag "Search!", class: "btn btn-primary"
+  = render 'shared/search_form'
 
 .center.middle-title
   %h2 Welcome To Koreport!!

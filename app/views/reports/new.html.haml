@@ -1,5 +1,5 @@
 %fieldset
-  = form_for Report.new, :html => { class: "form-horizontal", :multipart => true } do |f|
+  = form_for @report, :html => { class: "form-horizontal", :multipart => true } do |f|
     .control-group
       = f.label :title, class: "control-label"
       .controls
@@ -50,29 +50,10 @@
       .controls
         = f.text_area :content
 
-    .control-group
-      = f.label :document1, class: "control-label"
-      .controls
-        = f.file_field :document1
-
-    .control-group
-      = f.label :document2, class: "control-label"
-      .controls
-        = f.file_field :document2
-
-    .control-group
-      = f.label :document3, class: "control-label"
-      .controls
-        = f.file_field :document3
-
-    .control-group
-      = f.label :document4, class: "control-label"
-      .controls
-        = f.file_field :document4        
-
-    .control-group
-      = f.label :document5, class: "control-label"
-      .controls
-        = f.file_field :document5        
-
+    = f.fields_for :documents do |doc|
+      .control-group
+        = doc.label :doc_img, class: "control-label"    
+        .controls
+          = doc.file_field :doc_img
+  
     = f.submit "Create Report!", class: "btn btn-large btn-primary"

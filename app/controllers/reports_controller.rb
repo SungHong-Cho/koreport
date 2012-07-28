@@ -15,6 +15,8 @@ class ReportsController < ApplicationController
   end
 
   def new
+    @report = Report.new
+    5.times { @report.documents.build }
   end
 
   def edit
