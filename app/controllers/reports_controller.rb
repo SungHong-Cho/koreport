@@ -39,8 +39,8 @@ class ReportsController < ApplicationController
   def view
      @report = Report.find(params[:id])
      @img_list = @report.documents.collect { |document| document.doc_img }
-     
-     gon.firstImage = @img_list.first;
-     gon.images = @img_list;
+     @images = @img_list;     
+     gon.firstImage = @images.first.url;
+
   end
 end

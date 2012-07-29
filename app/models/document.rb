@@ -3,5 +3,5 @@ class Document < ActiveRecord::Base
 
   belongs_to :report
   
-  has_attached_file :doc_img
+  has_attached_file :doc_img, styles: { thumb: "100x100>" }
 end
