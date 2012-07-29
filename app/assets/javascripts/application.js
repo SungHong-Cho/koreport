@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+//= require jquery-1.7.2.min
+//= require jquery.easing.1.3
+//= require jquery.mousewheel.min
+//= require jquery.lhpMegaImgViewer.min
+

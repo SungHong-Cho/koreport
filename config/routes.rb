@@ -1,4 +1,6 @@
 Koreport::Application.routes.draw do
+  get "buckets/index"
+
   root :to => 'koreport#index'
 
   match 'search' => 'koreport#search', :as => :search
@@ -7,8 +9,7 @@ Koreport::Application.routes.draw do
 
   resources :users, :only => [:index, :show] do
     member do
-      get 'bucket'
-      post 'bucket', :action => :add_bucket
+      resources :buckets, :only => [:index, :create, :destroy]
     end
   end
 

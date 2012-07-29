@@ -31,6 +31,6 @@
             %span.badge.label-large.page= "#{report.page} Page"          
           %p
             %a.btn preview
-            = link_to "jjim!", bucket_user_path(current_user, :report_id => report.id), class: "btn", :method => 'post'
+            = link_to "jjim!", buckets_path(current_user, :report_id => report.id), class: "btn", :method => 'post'
           %p
             = link_to "See Detail", report, class: "btn btn-large btn-primary see-detail"

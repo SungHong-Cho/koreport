@@ -1,7 +1,7 @@
 class CreateSellers < ActiveRecord::Migration
   def change
     create_table :sellers do |t|
-      t.integer :user_id, :null => false
+      t.references :user, :null => false
       t.string :name, :null => false
       t.integer :rate
 

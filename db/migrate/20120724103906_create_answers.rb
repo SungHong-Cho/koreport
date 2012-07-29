@@ -1,7 +1,7 @@
 class CreateAnswers < ActiveRecord::Migration
   def change
     create_table :answers do |t|
-      t.integer :question_id, :null => false
+      t.references :question, :null => false
       t.text :content
 
       t.timestamps

@@ -5,9 +5,9 @@ gem 'rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#group :development do
-#  gem 'sqlite3'
-#end
+group :development do
+  gem 'sqlite3'
+end
 
 #group :test do
 #  gem 'sqlite3'
@@ -77,4 +77,5 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
-gem 'composite_primary_keys'
+gem 'gon'
+# gem 'composite_primary_keys'
