@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120728110153) do
+ActiveRecord::Schema.define(:version => 20120729081250) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(:version => 20120728110153) do
   end
 
   create_table "reports", :force => true do |t|
-    t.integer  "user_id",    :null => false
+    t.integer  "user_id",                  :null => false
     t.string   "title"
     t.string   "univ"
     t.string   "college"
@@ -105,8 +105,12 @@ ActiveRecord::Schema.define(:version => 20120728110153) do
     t.text     "intro"
     t.text     "list"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+    t.string   "content_img_file_name"
+    t.string   "content_img_content_type"
+    t.integer  "content_img_file_size"
+    t.datetime "content_img_updated_at"
   end
 
   create_table "second_categories", :force => true do |t|

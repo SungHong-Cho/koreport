@@ -8,17 +8,17 @@
     .control-group
       = f.label :university, class: "control-label"
       .controls
-        = f.text_field :univ
+        = f.text_field :univ_list
 
     .control-group
       = f.label :college, class: "control-label"
       .controls
-        = f.text_field :college
+        = f.text_field :college_list
 
     .control-group
       = f.label :dep, class: "control-label"
       .controls
-        = f.text_field :dep
+        = f.text_field :dep_list
 
     .control-group
       = f.label :year, class: "control-label"
@@ -36,6 +36,11 @@
         = f.text_field :page
 
     .control-group
+      = f.label :rate, class: "control-label"
+      .controls
+        = f.text_field :rate
+
+    .control-group
       = f.label :introduction, class: "control-label"
       .controls
         = f.text_area :intro
@@ -49,6 +54,11 @@
       = f.label :content, class: "control-label"
       .controls
         = f.text_area :content
+
+    .control-group
+      = f.label :content_img, class: "control-label"
+      .controls
+        = f.file_field :content_img
 
     = f.fields_for :documents do |doc|
       .control-group
