@@ -92,11 +92,7 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
   end
 
   create_table "reports", :force => true do |t|
-<<<<<<< HEAD
-    t.integer  "user_id",                :null => false
-=======
     t.integer  "user_id",                  :null => false
->>>>>>> 88dbc480b271ba55a4c698eed12b3bf81eef9348
     t.string   "title"
     t.string   "univ"
     t.string   "college"
@@ -109,9 +105,8 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
     t.text     "intro"
     t.text     "list"
     t.text     "content"
-<<<<<<< HEAD
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "document1_file_name"
     t.string   "document1_content_type"
     t.integer  "document1_file_size"
@@ -132,14 +127,10 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
     t.string   "document5_content_type"
     t.integer  "document5_file_size"
     t.datetime "document5_updated_at"
-=======
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
     t.string   "content_img_file_name"
     t.string   "content_img_content_type"
     t.integer  "content_img_file_size"
     t.datetime "content_img_updated_at"
->>>>>>> 88dbc480b271ba55a4c698eed12b3bf81eef9348
   end
 
   create_table "second_categories", :force => true do |t|
