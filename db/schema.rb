@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(:version => 20120728110153) do
   end
 
   create_table "first_categories", :force => true do |t|
-    t.string   "name",       :null => false
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "packages", :force => true do |t|
-    t.string   "name",                     :null => false
+    t.string   "name"
     t.integer  "price"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
@@ -72,27 +72,27 @@ ActiveRecord::Schema.define(:version => 20120728110153) do
     t.integer "report_id"
   end
 
-  create_table "purchases", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "item_id",                            :null => false
-    t.string   "item_type",    :default => "report"
+  create_table "purchases", :id => false, :force => true do |t|
+    t.integer  "user_id",                         :null => false
+    t.integer  "report_id",                       :null => false
     t.boolean  "isFeedback",   :default => false
     t.boolean  "isPaid",       :default => false
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.integer  "type",                            :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "payment_type"
   end
 
   create_table "questions", :force => true do |t|
     t.integer  "user_id",    :null => false
-    t.string   "title",      :null => false
+    t.string   "title"
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "reports", :force => true do |t|
-    t.integer  "user_id",    :null => false
+    t.integer  "user_id",                :null => false
     t.string   "title"
     t.string   "univ"
     t.string   "college"
@@ -105,13 +105,33 @@ ActiveRecord::Schema.define(:version => 20120728110153) do
     t.text     "intro"
     t.text     "list"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "document1_file_name"
+    t.string   "document1_content_type"
+    t.integer  "document1_file_size"
+    t.datetime "document1_updated_at"
+    t.string   "document2_file_name"
+    t.string   "document2_content_type"
+    t.integer  "document2_file_size"
+    t.datetime "document2_updated_at"
+    t.string   "document3_file_name"
+    t.string   "document3_content_type"
+    t.integer  "document3_file_size"
+    t.datetime "document3_updated_at"
+    t.string   "document4_file_name"
+    t.string   "document4_content_type"
+    t.integer  "document4_file_size"
+    t.datetime "document4_updated_at"
+    t.string   "document5_file_name"
+    t.string   "document5_content_type"
+    t.integer  "document5_file_size"
+    t.datetime "document5_updated_at"
   end
 
   create_table "second_categories", :force => true do |t|
     t.integer  "first_category_id", :null => false
-    t.string   "name",              :null => false
+    t.string   "name"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
@@ -128,7 +148,7 @@ ActiveRecord::Schema.define(:version => 20120728110153) do
     t.datetime "avatar_updated_at"
   end
 
-  create_table "statistics", :force => true do |t|
+  create_table "statistics", :id => false, :force => true do |t|
     t.integer  "total_user"
     t.integer  "total_page"
     t.integer  "sold_page"

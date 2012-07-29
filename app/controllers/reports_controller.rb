@@ -40,7 +40,7 @@ class ReportsController < ApplicationController
      @report = Report.find(params[:id])
      @img_list = @report.documents.collect { |document| document.doc_img }
      
-     gon.firstImage = @img_list.limit(1);
+     gon.firstImage = @img_list.first;
      gon.images = @img_list;
   end
 end
