@@ -1,16 +1,14 @@
 class Report < ActiveRecord::Base
-  attr_accessible :college, :content, :dep, :hit, :intro, :list, :page, :price, :rate, :title, :univ, :user_id, :year, :document1, :document2, :document3, :document4, :document5
+  attr_accessible :college, :content, :dep, :hit, :intro, :list, :page, :price, :rate, :title, :univ, :user_id, :year, :documents_attributes, :document
 
   has_and_belongs_to_many :packages
   belongs_to :user
   has_many :buckets
   has_many :purchases, :as => :item
 
-  has_attached_file :document1
-  has_attached_file :document2
-  has_attached_file :document3
-  has_attached_file :document4
-  has_attached_file :document5
+  has_many :documents
 
   validates :price, :page, :title, :presence => true
+    
+  accepts_nested_attributes_for :documents, :allow_destroy => true
 end

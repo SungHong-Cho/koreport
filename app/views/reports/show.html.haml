@@ -55,19 +55,19 @@
         .span6.intro-and-profile
           .intro
             = image_tag("intro.png")
-            %h4= @report.intro
+            = simple_format(@report.intro)
           .profile
             %p image
             /= image_tag(@report.user.avatar.url(:thumbnail))
             %span= @report.user.email
         .span6.content-table
           = image_tag("list.png")
-          %p= @report.list
+          = simple_format(@report.list)
   .row
     .span12
       .content
         = image_tag("content.png")
-        %h4= @report.content
+        = simple_format(@report.content)
   .row
     .span12
       .comment

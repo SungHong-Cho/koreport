@@ -1,9 +1,8 @@
 .search-section
   .row
     .span12.search-form
-      = form_tag search_path, class: "form-inline" do
-        = text_field_tag :search, params[:search], class: "input span4 search-query", placeholder: "year, university, major..."
-        = submit_tag "Search!!", class: "btn btn-primary"
+      = render 'shared/search_form'
+
 .search-phrase
   .row
     .span12    
@@ -27,10 +26,10 @@
           %p= report.intro
         .span2.panel.center
           %p
-            %span.label.label-large.label-success.price= "#{report.price} WON"          
+            %span.label.label-large.label-success.price= "#{report.price} 원"          
             %span.badge.label-large.page= "#{report.page} Page"          
           %p
             %a.btn preview
-            = link_to "jjim!", buckets_path(current_user, :report_id => report.id), class: "btn", :method => 'post'
+            = link_to "장바구니", user_buckets_path(report), class: "btn", :method => 'post'
           %p
             = link_to "See Detail", report, class: "btn btn-large btn-primary see-detail"

@@ -7,6 +7,7 @@ class PurchasesController < ApplicationController
   end
 
   def new
-    @reports = Report.all
+    @report_id = params[:reports_id]
+    @reports = Report.find_all_by_id(@report_id)
   end
 end
