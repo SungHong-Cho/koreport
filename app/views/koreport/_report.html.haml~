@@ -1,0 +1,13 @@
+.package
+  .row-fluid
+    .span2
+      = image_tag 'package.png', alt: 'package', width: '100px', height: '100px'
+    .span10
+      .content
+        %h4= link_to package.name, package
+        %p= package.price
+      .info
+        %span= "#{package.price} won"
+        = link_to 'see detail', '#', class:'btn btn-info'
+        = link_to 'cart', '#', class: 'btn'
+    

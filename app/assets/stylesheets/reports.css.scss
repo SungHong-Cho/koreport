@@ -6,60 +6,53 @@
 @import 'bootstrap/mixins';
 @import 'bootstrap/variables';
 
-.tag{
-    vertical-align: middle;
-    span {
-        font-size: 20px;
-        line-height: 35px;
+.panel {
+    
+    .info{
+        background-color: $white;
+        .mark {
+         text-align: center;
+        }
     }
-}
-
-.desc-info {
-    background-color: $white;
-    @include box-shadow($shadow: 0px 1px 3px rgba(0,0,0,.25));
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    .page-header {
-        margin-left: 10px;
-        margin-right: -10px;
-    }
-    .information {
-        font-size: 15px;
-        .page {
-        margin-left: 30px;
+    
+    .control {
+        background-color: $black;
+        .color-tap {
+            height: 60px;
+            background-color: #2589C9;
+            color: #2589C9;
+        }
+        .buttons {
+            padding-right: 10px;
+            line-height: 60px;
+            text-align: right;
+            vertical-align: middle;
+            .price {
+                color: $white;
+            }
+            a {
+                margin-left: 10px;
+            }
         }
     }
 }
 
-.price-and-download {
-    margin-left:10px;
-    li {
-        text-align: center;
-        line-height: 30px;
-        .price {
-            font-size: 20px;
-        }
-        .page {
-            font-size: 15px;
+.contents {
+    margin: 20px auto;
+    border-top: 3px solid #939393;
+    background-color: #fefefe;
+    .contents-title {
+        background-color: #F4F4F4;
+        .span3 {
+            background-color: $white;
+            padding-left: 10px;
+            h2 {
+                border-left: 5px solid $black;
+            }
         }
     }
-}
 
-.desc-content .span12 {
-    background-color: $white;
-    @include box-shadow($shadow: 0px 1px 3px rgba(0,0,0,.25));
-    margin-bottom: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 920px;
-    padding-left: 10px;
-    padding-right: 10px;
-    .span6 {
-        width: 450px;
-    }
-    img {
-        margin-bottom: 10px;
-    }
+    div[class$='label'] {
+        margin-left: -30px;
+        }
 }

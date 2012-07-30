@@ -1,36 +1,32 @@
-.hero-unit.hero-logo
-  = image_tag "logo.png", alt: "koreport Logo", width: "200px", height: "200px"
-  %h1 Koreport
-  %p Search report what you want by using keyword.
+.logo-and-search
+  = image_tag "main_logo.png", alt: "koreport Logo"
   = render 'shared/search_form'
 
-.center.middle-title
-  %h2 Welcome To Koreport!!
+- content_for :below do
+  = image_tag 'category_label.png'
 
-%ul.thumbnails
-  %li.span4
-    .thumbnail
-      = image_tag "howToBuy.jpg", alt: "howToBuy"
-      .caption
-        %h5 How To Buy Report.
+  %ul.thumbnails
+    %li.span4
+      .thumbnail
+        = link_to image_tag("pillar1.png", alt: "how To Buy"), '#'
 
-  %li.span4
-    .thumbnail
-      = image_tag "howToBuy.jpg", alt: "howToBuy"
-      .caption
-        %h5 How To Buy Report.
+    %li.span4
+      .thumbnail
+        = link_to image_tag("pillar2.png", alt: "Category"), '#'
   
-  %li.span4
-    .thumbnail
-      = image_tag "howToBuy.jpg", alt: "howToBuy"
-      .caption
-        %h5 How To Buy Report.
+    %li.span4
+      .thumbnail
+        = link_to image_tag("pillar3.png", alt: "Package"), '#'
 
-
-.hero-unit.sign-up
-  %br
-  %p then take what you want.
-  = form_for(User.new, as: :user, url: registration_path(:user), html: {class: "form-inline"}) do |f|
-    = f.email_field :email, placeholder: "e-mail", class: "span3 input"
-    = f.password_field :password, placeholder: "password", class: "span3 input"
-    = f.submit "Sign Up!", class: "btn btn-primary"
+  .sign-up
+    .row
+      .span7
+        = image_tag 'sign_up_label.png'
+        %h3 Just insert E-mail and password!
+        = form_for(User.new, as: :user, url: registration_path(:user), html: {class: "form-inline"}) do |f|
+          = f.email_field :email, placeholder: "e-mail", class: "span3 input"
+          = f.password_field :password, placeholder: "password", class: "span3 input"
+          = f.submit "Sign Up!", class: "btn btn-primary"
+      .span5
+        = image_tag 'sign_up_now.png'
+    

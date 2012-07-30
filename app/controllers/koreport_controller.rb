@@ -4,6 +4,7 @@ class KoreportController < ApplicationController
   end
 
   def search
-    @report = Report.all
+    @packages = Package.all
+    @reports = Report.all
   end
 end

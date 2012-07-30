@@ -8,5 +8,18 @@
     = csrf_meta_tags
   %body
     = render 'layouts/header'
-    .container
-      = yield
+    .above
+      - unless current_page?(controller: 'koreport', action: 'search')
+        = content_tag(:div, yield, class: 'container')
+      - else
+        = yield
+    .below
+      - unless current_page?(search_path)
+        = content_tag(:div, yield(:below), class: 'container')
+      - else
+        = yield :below
+
+    - unless current_page?(search_path)
+      = content_tag(:div, render('layouts/footer'), class: 'container')
+    - else
+      = render 'layouts/footer'
