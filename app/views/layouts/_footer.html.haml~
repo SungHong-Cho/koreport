@@ -1,0 +1,12 @@
+%footer
+  .row
+    .span2
+      = image_tag 'footer_logo', alt: 'koreport'
+    .span7
+      %p koreport corperation, bullabullabulla
+    .span3
+      = link_to 'personal information', '#'
+      %span |
+      = link_to 'corperation information'
+      %span |
+      = link_to 'hi'

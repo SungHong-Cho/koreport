@@ -1,0 +1,12 @@
+.row-fluid
+  .span2
+    = image_tag 'mark/hanyang.png', alt: 'hanyang', width: '100px', height: '100px'
+  .span10
+    .content
+      %h4= link_to package.name, package
+      %p= package.price
+    .info
+      %span= package.price
+      = link_to 'see detail', '#', class:'btn btn-success'
+      = link_to 'cart', '#', class: 'btn'
+    

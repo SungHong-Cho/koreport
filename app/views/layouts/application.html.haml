@@ -8,5 +8,11 @@
     = csrf_meta_tags
   %body
     = render 'layouts/header'
-    .container
-      = yield
+    .above
+      .container
+        = yield
+    .below
+      .container
+        = yield :below
+
+    = render 'layouts/footer'

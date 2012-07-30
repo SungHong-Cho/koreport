@@ -22,10 +22,15 @@ $heroUnitBackground: #FFF;
     padding: 0px 0px 0px 0px;
 }
 
-// global.
-body {
-    padding-top:50px;
-    background: url('https://d3dma7a8zw52bz.cloudfront.net/assets/wallpapers/paper-f71f08fcbae1cf0f3df9ec0d9fb000fa.jpg') #F5EFE6; 
+// application.
+
+.above {
+    padding-top : 60px;
+    background: url('https://d3dma7a8zw52bz.cloudfront.net/assets/wallpapers/paper-f71f08fcbae1cf0f3df9ec0d9fb000fa.jpg') #F5EFE6;
+}
+
+.below {
+    background-color: $white;
 }
 
 .container{
@@ -33,6 +38,7 @@ margin: 0 auto;
 float: none;
 }
 
-.hero-logo {
-text-align : center;
+// footer.
+footer {
+    padding: 100px 0;
 }

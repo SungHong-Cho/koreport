@@ -6,110 +6,38 @@
 @import "bootstrap/variables";
 
 // koreport#index
-.middle-title {
-    @include center-block();
+.logo-and-search {
+    text-align : center;
+    padding: 60px;
+}
+
+.thumbnail {
+    border: none;
 }
 
 .sign-up {
-    background-image: url('signUp.png');
-    padding: 110px 20px 10px 370px;
 }
 
 // koreport#search
-.search-section, .search-list {
-    background-color: $white;
-    @include box-shadow($shadow: 0px 1px 3px rgba(0,0,0,.25));
-    margin-bottom: 20px;
-    padding: 10px;
+.section-title {
+    border-bottom: 1px solid #FFF;
 }
 
-/*.search-form {
-    padding-left:20px;
+.title-label {
+    display: inline;
+    padding: 1px 4px 2px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -border-radius: 3px;
+    font-size: 15pt;
+    font-weight: bold;
+    line-hegiht: 20px;
+    color: white;
+    vertical-align: center;
+    white-space: nowrap;
+    background-color: #F0F;
 }
 
-.search-section {
-    padding-top: 18px;
+.content {
+    height: 100px;
 }
-
-.search-list {
-    padding: 10px;
-    >li {
-        margin-bottom: 10px;
-        border-bottom: 1px solid #E5E5E5;
-        .panel {
-           line-height:20px;           
-        }
-    }
-}
-
-.center {
-    @include center-block();
-    text-align: center;
-}
-
-.see-detail {
-    padding-left: 24px;
-    padding-right: 24px;
-}
-
-// action: show.
-
-.top-control-and-tag [class*="span"]{
-    height: 40px;
-    vertical-align: middle;
-    line-height: 40px;
-}
-
-.tag{
-    font-size: 20px;
-}
-
-.desc-info {
-    background-color: $white;
-    @include box-shadow($shadow: 0px 1px 3px rgba(0,0,0,.25));
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    .page-header {
-        margin-left: 10px;
-        margin-right: -10px;
-    }
-    .information {
-        font-size: 15px;
-        .page {
-        margin-left: 30px;
-        }
-    }
-}
-
-.price-and-download {
-    margin-left:10px;
-    li {
-        text-align: center;
-        line-height: 30px;
-        .price {
-            font-size: 20px;
-        }
-        .page {
-            font-size: 15px;
-        }
-    }
-}
-
-.desc-content .span12 {
-    background-color: $white;
-    @include box-shadow($shadow: 0px 1px 3px rgba(0,0,0,.25));
-    margin-bottom: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    width: 920px;
-    padding-left: 10px;
-    padding-right: 10px;
-    .span6 {
-        width: 450px;
-    }
-    img {
-        margin-bottom: 10px;
-    }
-}*/
