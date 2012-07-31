@@ -18,4 +18,4 @@
 //= require jquery.easing.1.3
 //= require jquery.mousewheel.min
 //= require jquery.lhpMegaImgViewer.min
-
+//= require jquery.printElement.min

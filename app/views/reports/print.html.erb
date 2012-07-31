@@ -1,0 +1,11 @@
+<html>
+  <head>
+  </head>
+  <body onload=printElem({printMode:"iframe",leaveOpen:true});>
+    <div id="printArea">
+      <% @images.each do |doc_img| %>
+      <%= image_tag(doc_img.url) %>
+      <% end %>
+    </div>
+  </body>
+  </html>
