@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120729081250) do
+ActiveRecord::Schema.define(:version => 20120730110554) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
   end
 
   create_table "first_categories", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "packages", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                     :null => false
     t.integer  "price"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
     t.string   "content_img_content_type"
     t.integer  "content_img_file_size"
     t.datetime "content_img_updated_at"
+    t.text     "intro"
   end
 
   create_table "packages_reports", :id => false, :force => true do |t|
@@ -72,20 +73,20 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
     t.integer "report_id"
   end
 
-  create_table "purchases", :id => false, :force => true do |t|
-    t.integer  "user_id",                         :null => false
-    t.integer  "report_id",                       :null => false
+  create_table "purchases", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "item_id",                            :null => false
+    t.string   "item_type",    :default => "report"
     t.boolean  "isFeedback",   :default => false
     t.boolean  "isPaid",       :default => false
-    t.integer  "type",                            :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "payment_type"
   end
 
   create_table "questions", :force => true do |t|
     t.integer  "user_id",    :null => false
-    t.string   "title"
+    t.string   "title",      :null => false
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -101,32 +102,12 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
     t.integer  "price"
     t.integer  "page"
     t.integer  "hit"
-    t.integer  "rate"
+    t.integer  "expert_rate"
     t.text     "intro"
     t.text     "list"
     t.text     "content"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
-    t.string   "document1_file_name"
-    t.string   "document1_content_type"
-    t.integer  "document1_file_size"
-    t.datetime "document1_updated_at"
-    t.string   "document2_file_name"
-    t.string   "document2_content_type"
-    t.integer  "document2_file_size"
-    t.datetime "document2_updated_at"
-    t.string   "document3_file_name"
-    t.string   "document3_content_type"
-    t.integer  "document3_file_size"
-    t.datetime "document3_updated_at"
-    t.string   "document4_file_name"
-    t.string   "document4_content_type"
-    t.integer  "document4_file_size"
-    t.datetime "document4_updated_at"
-    t.string   "document5_file_name"
-    t.string   "document5_content_type"
-    t.integer  "document5_file_size"
-    t.datetime "document5_updated_at"
     t.string   "content_img_file_name"
     t.string   "content_img_content_type"
     t.integer  "content_img_file_size"
@@ -135,7 +116,7 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
 
   create_table "second_categories", :force => true do |t|
     t.integer  "first_category_id", :null => false
-    t.string   "name"
+    t.string   "name",              :null => false
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
@@ -195,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20120729081250) do
     t.boolean  "freepass",               :default => false, :null => false
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "account"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -6,11 +6,23 @@
       = render 'shared/search_form'
 
 - content_for :below do
-  .row
-    .span10       
-      .pakage-section
-        .section-title
-          .title-label
-            %span Package
-        .section-content
-          = render(partial: 'package', collection: @packages) || "no result."
+  - if @packages.empty? && @reports.empty?
+    .out-of-result
+      
+  - else
+    .row
+      .span10       
+        .pakage-section
+          .section-title
+            .title-label
+              %span "Package #{@packages.count}."
+            .section-content
+              = render(partial: 'package', collection: @packages) || "no result."
+    .row
+      .span10       
+        .report-section
+          .section-title
+            .title-label
+              %span "Report #{@reports.count}."
+            .section-content
+              = render(partial: 'report', collection: @reports) || "no result."

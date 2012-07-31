@@ -1,16 +1,10 @@
-.top-control-and-tag
+.top-control
   .row
-    .span3.back
-      = link_to search_path, class: "btn btn-large btn-primary" do
+    .span3
+      = link_to search_path, class: "btn btn-large" do
         %i.icon-chevron-left.icon-white.icon-large
         %span Back
-      = link_to '#', class: "btn btn-large btn-info" do
-        %i.icon-check.icon-white.icon-large
-        %span Check!
-    .span1.tag
-      %span.label.label-info Tags
-    .span8.tags
-
+ 
 - if user_signed_in? && not(current_user.seller.nil?) && not(@package.nil?)
   = form_for @package, :html => { :method => :put }, :class => "form-inline" do |f|
     = f.label "select package that wish to add this report"
@@ -18,57 +12,62 @@
     = f.hidden_field(:report_id, :value => @report.id) 
     = f.submit "Add report!", class: "btn btn-success"
 
-.desc-info
+.panel
   .row
-    .span10
+    .span12.info
       .row
+        .span2.mark
+          = image_tag 'mark/hanyang.png', alt: 'hanyang', width: '100px', height: '100px'
         .span10
-          .page-header
-            %h2.title= @report.title
-      .row.information
-        .span2.page
-          %i.icon-file.icon-large
-          %span= "#{@report.page} page"
-        .span2.file-type
-          %i.icon-inbox.icon-large
-          %span.file-type hangul file
-        .span2.created-time
-          %i.icon-time.icon-large
-          %span.created-time= @report.created_at.strftime("%F")
+          .row.title
+            .span10
+              %h2= @report.title
+          .row.info
+            .span10
+              %i.icon-file.icon-large
+              %span= "#{@report.page} page"
+              %i.icon-time.icon-large
+              %span.created-time= @report.created_at.strftime("%F")
+  .row-fluid.control
+    .span2.color-tap
+      %span= "color-tap"
+    .span10.buttons
+      %span.price= "#{@report.price} WON"
+      = link_to new_purchase_path, class: "btn btn-large btn-info" do
+        %span buy!
+      = link_to buckets_path(current_user), class: "btn btn-large", method: 'post' do
+        %span check!
 
-    .span2.price-and-download
-      %ul.unstyled
-        %li
-          %span.label.label-success.price= "#{@report.price} WON"
-        %li
-          %span.badge.label-large.page= "#{@report.page} Page"
-          %br
-        %li
-          = link_to new_purchase_path, class: "btn btn-large btn-success" do
-            %i.icon-download-alt.icon-white
-            %span Download!
+.contents
+  .row-fluid.contents-title
+    .span3
+      %h2 description
 
-.desc-content
-  .row
+  .row.intro-label
+    .span2
+      = image_tag 'report/intro.png', alt: 'introduction'
+  .row.intro
     .span12
-      .row
-        .span6.intro-and-profile
-          .intro
-            = image_tag("intro.png")
-            = simple_format(@report.intro)
-          .profile
-            %p image
-            /= image_tag(@report.user.avatar.url(:thumbnail))
-            %span= @report.user.email
-        .span6.content-table
-          = image_tag("list.png")
-          = simple_format(@report.list)
-  .row
+      %p= simple_format(@report.intro)
+
+  .row.list-label
+    .span2
+      = image_tag 'report/list.png', alt: 'list'
+  .row.list
     .span12
-      .content
-        = image_tag("content.png")
-        = simple_format(@report.content)
-  .row
+      %p= simple_format(@report.list)
+
+
+  .row.content-label
+    .span2
+      = image_tag 'report/content.png', alt: 'content'
+  .row.content
     .span12
-      .comment
-        = image_tag("comment.png")
+      %p= simple_format(@report.content)
+
+
+  .row.comment-label
+    .span2
+      = image_tag 'report/comment.png', alt: 'comment'
+  .row.comment
+    .span12

@@ -1,0 +1,7 @@
+class RenameRateInReportToExpertRate < ActiveRecord::Migration
+  def up
+  end
+
+  def down
+  end
+end

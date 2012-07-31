@@ -20,24 +20,33 @@
 
 // koreport#search
 .section-title {
-    border-bottom: 1px solid #FFF;
+    border-bottom: 3px solid #F5F1E8;
 }
 
 .title-label {
     display: inline;
-    padding: 1px 4px 2px;
+    padding: 4px 16px 8px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -border-radius: 3px;
     font-size: 15pt;
     font-weight: bold;
+    color: black;
     line-hegiht: 20px;
-    color: white;
     vertical-align: center;
     white-space: nowrap;
-    background-color: #F0F;
+    background-color: #F5F1E8;
 }
 
-.content {
-    height: 100px;
+.package, .report{
+    margin: 20px 0;
+    
+    .content {
+        height: 60px;
+    }
+
+    .info {
+        text-align: right;
+        color: #B6B6B6;
+    }
 }

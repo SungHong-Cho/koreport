@@ -13,6 +13,8 @@
  *= require_tree .
  */
 $heroUnitBackground: #FFF;
+$btnInfoBackground: #6B51A7;
+$btnInfoBackgroundHighlight: #564185;
 
 @import 'bootstrap';
 @import 'font-awesome';
@@ -34,11 +36,12 @@ $heroUnitBackground: #FFF;
 }
 
 .container{
-margin: 0 auto;
+margin: 10px auto;
 float: none;
 }
 
 // footer.
-footer {
-    padding: 100px 0;
+footer .content {
+    padding: 20px 0;
+    border-top: 3px solid #B6B6B6;
 }
