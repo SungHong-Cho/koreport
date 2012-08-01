@@ -12,8 +12,9 @@
         - if user_signed_in?
           %ul.nav
             %li
-              %i.icon-shopping-cart
-              = link_to "장바구니", buckets_path(current_user)
+              = link_to buckets_path(current_user) do
+                %i.icon-shopping-cart
+                %span 장바구니
             %li.dropdown#fat-menu
               %a.dropdown-toggle{'data-toggle' => 'dropdown'}
                 %i.icon-user.icon-large.icon-white
