@@ -11,17 +11,19 @@
   %body
     = render 'layouts/header'
     .above
-      - unless current_page?(search_path)
+      - if current_page?(controller: params[:controller], action: params[:action])
         = content_tag(:div, yield, class: 'container')
       - else
         = yield
     .below
-      - unless current_page?(search_path)
+      - if current_page?(controller: params[:controller], action: params[:action])
         = content_tag(:div, yield(:below), class: 'container')
       - else
         = yield :below
 
-    - unless current_page?(search_path)
+    - if current_page?(controller: params[:controller], action: params[:action])
       = content_tag(:div, render('layouts/footer'), class: 'container')
     - else
       = render 'layouts/footer'
+
+    = render 'layouts/debug'
