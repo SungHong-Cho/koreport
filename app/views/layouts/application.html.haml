@@ -10,20 +10,23 @@
     = csrf_meta_tags
   %body
     = render 'layouts/header'
-    .above
-      - if current_page?(controller: params[:controller], action: params[:action])
-        = content_tag(:div, yield, class: 'container')
-      - else
-        = yield
+    - unless yield.blank?
+      .above
+        - unless current_path?(params[:controller], params[:action])
+          = content_tag(:div, yield, class: 'container')
+        - else
+          = yield
     .below
-      - if current_page?(controller: params[:controller], action: params[:action])
+      - unless current_path?(params[:controller], params[:action])
         = content_tag(:div, yield(:below), class: 'container')
       - else
         = yield :below
 
-    - if current_page?(controller: params[:controller], action: params[:action])
+    - unless current_path?(params[:controller], params[:action])
       = content_tag(:div, render('layouts/footer'), class: 'container')
     - else
-      = render 'layouts/footer'
+      .row
+        .span10.offset2
+          = render('layouts/footer')
 
     = render 'layouts/debug'

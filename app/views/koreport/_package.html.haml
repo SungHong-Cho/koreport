@@ -1,13 +1,16 @@
 .package
   .row-fluid
     .span2
-      = image_tag 'package.png', alt: 'package', width: '100px', height: '100px'
+      = image_tag 'package.png', alt: 'hanyang', width: '100px', height: '100px'
     .span10
       .content
         %h4= link_to package.name, package
-        %p= package.price
+        %p= package.intro
       .info
-        %span= "#{package.price} won"
-        = link_to 'see detail', '#', class:'btn btn-info'
-        = link_to 'cart', '#', class: 'btn'
-    
+        %span= "#{package.price} 원"
+        = link_to '자세히 보기', package_path(package), class:'btn btn-info'
+        - if user_signed_in?
+          /- if package.buckets.empty?
+          = link_to '카트에 담기', buckets_path(current_user, report_id: 1), method: 'post', class: 'btn'
+        - else
+          %span.btn.disabled 카트에 담김        

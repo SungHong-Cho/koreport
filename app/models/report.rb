@@ -14,4 +14,12 @@ class Report < ActiveRecord::Base
   validates :price, :page, :title, :presence => true
     
   accepts_nested_attributes_for :documents, :allow_destroy => true
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 end
