@@ -48,15 +48,11 @@
 
 
     %h2 !! 이 밑이 도큐먼트 이미지 !!
-    .control-group
-      = f.label :docs, class: "control-label"
-      .controls
-        = f.file_field :docs, multiple: true
-    /
-      / = f.fields_for :documents do |doc|
-      /.control-group
-      / = doc.label :doc_img, class: "control-label"    
-      /.controls
-      / = doc.file_field :doc_img
+    
+    = f.fields_for :documents do |doc|
+      .control-group
+        = doc.label :doc_img, class: "control-label"    
+        .controls
+          = doc.file_field :doc_img
   
     = f.submit "Create Report!", class: "btn btn-large btn-primary"
