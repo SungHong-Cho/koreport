@@ -1,4 +1,3 @@
-
 class ReportsController < ApplicationController
   def index
   end
@@ -8,9 +7,8 @@ class ReportsController < ApplicationController
 
     if @report.save
       redirect_to report_path(@report)
-
     else
-      redirect_to root_path
+     redirect_to root_path
     end
   end
 

@@ -1,5 +1,5 @@
-.purchase-list
-  .table-head
+- content_for :below do
+  .bucket
     .row
       .span6
         %h3 title
@@ -28,8 +28,72 @@
         .span12.collapse{ :id => "content#{index}"}= report.content
         = link_to new_purchases_path, class: "btn btn-large btn-info" do
           %span buy!
-
-  .overall-information
+      .span12
+        = image_tag('order_label.png', alt: '주문/결제')
+    .row
+      .span12.progress
+        = image_tag('progress_order.png', alt: '주문/결제')
     .row
       .span12
-        %h2= "Total : #{@reports.map(&:price).inject(0, :+)} WON"
+        %h3 1.구입상품 - 패키지
+        %table.table.table-stripped.package.list
+          %thead
+            %th 제목
+            %th 자소서 수
+            %th 상품가격
+            %th 할인가격
+            %th 합계
+          %tbody
+            - @packages.each do |package|
+              %tr
+                %td= package.name
+                %td= "#{package} 개"
+                %td= package.price
+                %td package.discount
+                %td package.sum 
+    .row
+      .span12
+        %h3 2. 결제금액 - 패키지
+        %table.table.table-stripped.package.result
+          %thead
+            %th 상품가격
+            %th 할인금액
+            %th 총 구매 금액
+          %tbody
+            %tr
+              %td= package.price_sum
+              %td= package.discount_sum
+              %td= package.dc_price_sum
+      
+    .row
+      .span12
+        %h3 1.구입상품 - 리포트
+      %table.table.table-stripped.package
+        %thead
+          %th 제목
+          %th 자소서 수
+          %th 상품가격
+          %th 할인가격
+          %th 합계
+        %tbody
+          - @reports.each do |report|
+            %tr
+              %td= package.name
+              %td= "#{report} 개"
+              %td= package.price
+              %td item.discount
+              %td item.sum
+
+    .row
+      .span12
+        %h3 2. 결제금액 - 패키지
+        %table.table.table-stripped.package.result
+          %thead
+            %th 상품가격
+            %th 할인금액
+            %th 총 구매 금액
+          %tbody
+            %tr
+              %td= package.price_sum
+              %td= package.discount_sum
+              %td= package.dc_price_sum

@@ -6,23 +6,31 @@
       = render 'shared/search_form'
 
 - content_for :below do
-  - if @packages.empty? && @reports.empty?
-    .out-of-result
-      
-  - else
-    .row
-      .span10       
-        .pakage-section
-          .section-title
-            .title-label
-              %span= "패키지 상품 #{@packages.count}건"
-            .section-content
-              = render(partial: 'package', collection: @packages) || "검색된 결과가 없습니다."
-    .row
-      .span10       
-        .report-section
-          .section-title
-            .title-label
-              %span= "리포트 #{@reports.count}건"
-            .section-content
-              = render(partial: 'report', collection: @reports) || "검색된 결과가 없습니다."
+  .row.content-result
+    .span2
+      %ul.nav.nav-pills.nav-stacked
+        %li.active
+          = link_to '패키지', '#'
+        %li
+          = link_to '공모전', '#'
+    .span10
+      - if @packages.empty? && @reports.empty?
+        .out-of-result
+          검색결과가 없다네~
+      - else
+        .row
+          .span10       
+            .pakage-section
+              .section-title
+                .title-label
+                  %span= "패키지 상품 #{@packages.count}건"
+              .section-content
+                = render(partial: 'package', collection: @packages) || "검색된 결과가 없습니다."
+        .row
+          .span10       
+            .report-section
+              .section-title
+                .title-label
+                  %span= "리포트 #{@reports.count}건"
+              .section-content
+                = render(partial: 'report', collection: @reports) || "검색된 결과가 없습니다."

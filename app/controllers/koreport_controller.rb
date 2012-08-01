@@ -4,7 +4,10 @@ class KoreportController < ApplicationController
   end
 
   def search
-    @packages = Package.all
-    @reports = Report.all
+    #if params[:search].blank?
+      #redirect_to root_path
+    #else
+    @packages = Package.search(params[:search])
+    @reports = Report.search(params[:search])
   end
 end
