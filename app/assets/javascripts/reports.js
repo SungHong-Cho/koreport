@@ -23,4 +23,14 @@ $(document).ready(function() {
 			$('#myDiv').lhpMegaImgViewer(thumbGalleryStt); //create new instance
 		});
 	});
+	$("#printBtn").click(function() {
+		printElem({
+			printMode:"iframe",
+			leaveOpen:true
+		});
+	});
 });
+
+function printElem(options) {
+	$("#printArea").printElement(options);
+}

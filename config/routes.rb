@@ -17,7 +17,7 @@ Koreport::Application.routes.draw do
 
   resources :packages
   resources :reports do
-    get 'view', :on => :member
+    get 'view', 'print', :on => :member
   end
   resources :purchases, :only => [:index, :create, :new]
 
