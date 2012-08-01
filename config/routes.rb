@@ -19,7 +19,12 @@ Koreport::Application.routes.draw do
   resources :reports do
     get 'view', 'print', :on => :member
   end
-  resources :purchases, :only => [:index, :create, :new]
+  resources :purchases, :only => [:index, :create, :new] do
+    :member do
+      post 'order'
+      get 'order_complete'
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

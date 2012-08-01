@@ -1,5 +1,5 @@
 class Report < ActiveRecord::Base
-  attr_accessible :college_list, :content, :dep_list, :hit, :intro, :list, :page, :price, :title, :univ_list, :expert_rate, :year, :documents_attributes, :document
+  attr_accessible :college_list, :content, :dep_list, :hit, :intro, :list, :page, :price, :title, :univ_list, :expert_rate, :year, :documents_attributes, :docs
 
   acts_as_taggable
   acts_as_taggable_on :univs, :colleges, :deps
@@ -11,7 +11,7 @@ class Report < ActiveRecord::Base
 
   has_many :documents
 
-  validates :price, :page, :title, :presence => true
+  validates :page, :title, :presence => true
     
   accepts_nested_attributes_for :documents, :allow_destroy => true
 
@@ -21,5 +21,13 @@ class Report < ActiveRecord::Base
     else
       find(:all)
     end
+  end
+
+  def docs=(doc)
+    @docs = doc
+  end
+
+  def docs
+    @docs
   end
 end

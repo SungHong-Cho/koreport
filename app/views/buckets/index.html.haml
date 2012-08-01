@@ -7,7 +7,6 @@
     = form_tag buckets_path(current_user), method: 'delete' do
       %table.table.table-stripped.list
         %thead
-          %th 번호
           %th 제목
           %th 페이지 수
           %th 상품가격
@@ -15,9 +14,8 @@
           %th 합계
           %th 선택
         %tbody
-          - @bucket_items.each_with_index do |item, index|
+          - @bucket_items.each do |item|
             %tr
-              %td= index
               %td= item.title
               %td= "#{item.page} Page"
               %td= item.price
@@ -25,4 +23,5 @@
               %td item.sum
               %td= check_box_tag "item_ids[]", item.id
       = submit_tag "delete seleted", class: "btn btn-info"
-  = button_to "select all", class: "btn"       
+      = submit_tag "구매하기" class: "btn"
+  = button_to "select all", class: "btn"
