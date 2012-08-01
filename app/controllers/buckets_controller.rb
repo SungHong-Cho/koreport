@@ -1,8 +1,8 @@
 class BucketsController < ApplicationController
   def index
     if user_signed_in?
-      @reports = current_user.bucket_reports.all
-      @reports_id = @reports.collect {|report| report.id} if @reports.any?
+      @bucket_items = current_user.bucket_reports.all
+      # @reports_id = @reports.collect {|report| report.id} if @reports.any?
     else
       redirect_to new_user_session_path
     end
@@ -18,5 +18,12 @@ class BucketsController < ApplicationController
   end
 
   def destroy
+    if user_signed_in?
+      @buckets = current_user.buckets
+      @buckets.where(report_id: params[:item_ids]).destroy_all
+      redirect_to buckets_path(current_user)
+    else
+      redirect_to new_user_session_path
+    end
   end
 end

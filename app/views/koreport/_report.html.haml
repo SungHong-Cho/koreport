@@ -9,5 +9,5 @@
       .info
         %span= "#{report.price} won"
         = link_to 'see detail', '#', class:'btn btn-info'
-        = link_to 'cart', '#', class: 'btn'
+        = link_to 'cart', buckets_path(current_user, report_id: report.id), method: 'post', class: 'btn'
     

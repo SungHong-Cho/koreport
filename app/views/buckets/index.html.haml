@@ -1,5 +1,28 @@
-= render 'shared/report_list'
-
-.row
-  .span12
-    = link_to "구매하기", new_purchase_path(reports_id: @reports_id), class: "btn btn-large btn-primary"
+- content_for :below do
+  .bucket
+    .row
+      .span12
+        = image_tag('bucket_label.png', alt: '장바구니')
+        
+    = form_tag buckets_path(current_user), method: 'delete' do
+      %table.table.table-stripped.list
+        %thead
+          %th 번호
+          %th 제목
+          %th 페이지 수
+          %th 상품가격
+          %th 할인가격
+          %th 합계
+          %th 선택
+        %tbody
+          - @bucket_items.each_with_index do |item, index|
+            %tr
+              %td= index
+              %td= item.title
+              %td= "#{item.page} Page"
+              %td= item.price
+              %td item.discount
+              %td item.sum
+              %td= check_box_tag "item_ids[]", item.id
+      = submit_tag "delete seleted", class: "btn btn-info"
+  = button_to "select all", class: "btn"       

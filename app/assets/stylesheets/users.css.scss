@@ -1,3 +1,64 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// sign-in
+.window {
+    background: url('window_bg.png') center bottom no-repeat;
+    background-color: white;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-top: 5px solid #939393;
+    color: #2589c9;
+    padding: 0;
+    .window-bar {
+        .window-label {
+            background-color: white;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 50px;
+            span {
+                color: #2589c9;
+                border-left: 10px solid #0c68a4;
+                font-size: 20px;
+                word-spacing: 10px;
+                padding-left: 10px;
+            }
+        }
+        .span10 {
+            margin-left: 0px;
+            padding-right: 10px;
+            width: 790px;
+            height: 50px;
+            line-height: 50px;
+            text-align: right;
+            vertical-align: baseline;
+            background-color: #FAFAFA;
+        }
+    }
+    .content {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        .row {
+            .form {
+                margin-top: 60px;
+                margin-bottom: 60px;
+                .btn {
+                    width: 132px;
+                }
+            }
+            
+        }
+        .info-text {
+            text-align: right;
+        }
+        .row {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            .btn {
+                width:110px;
+            }
+        }
+    }
+}
