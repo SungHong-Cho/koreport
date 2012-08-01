@@ -2,7 +2,7 @@ class BucketsController < ApplicationController
   def index
     if user_signed_in?
       @bucket_items = current_user.bucket_reports.all
-      # @reports_id = @reports.collect {|report| report.id} if @reports.any?
+      @reports_id = @reports.collect {|report| report.id} if @reports.any?
     else
       redirect_to new_user_session_path
     end

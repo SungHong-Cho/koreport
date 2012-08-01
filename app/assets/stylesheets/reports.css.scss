@@ -7,7 +7,6 @@
 @import 'bootstrap/variables';
 
 .panel {
-    
     .info{
         background-color: $white;
         .mark {
@@ -47,12 +46,20 @@
             background-color: $white;
             padding-left: 10px;
             h2 {
-                border-left: 5px solid $black;
+                border-left: 5px solid #4F535a;
+                padding-left: 10px
             }
+        }
+    }
+
+    .content {
+        padding: 20px 10px;
+        .data {
+            text-align: center;
         }
     }
 
     div[class$='label'] {
         margin-left: -30px;
-        }
+    }
 }

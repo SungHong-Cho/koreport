@@ -3,7 +3,7 @@
     .span3
       = link_to search_path, class: "btn btn-large" do
         %i.icon-chevron-left.icon-white.icon-large
-        %span Back
+        %span 뒤로
  
 - if user_signed_in? && not(current_user.seller.nil?) && not(@package.nil?)
   = form_for @package, :html => { :method => :put }, :class => "form-inline" do |f|
@@ -32,11 +32,18 @@
     .span2.color-tap
       %span= "color-tap"
     .span10.buttons
-      %span.price= "#{@report.price} WON"
-      = link_to new_purchase_path, class: "btn btn-large btn-info" do
-        %span buy!
-      = link_to buckets_path(current_user), class: "btn btn-large", method: 'post' do
-        %span check!
+      %span.price= "#{@report.price} 원"
+      - if current_user.purchases.exists?(@report)
+        = link_to view_report_path(report), class: "btn btn-large btn-info" do
+          %span 뷰어로 보기
+      - else
+        = link_to new_purchase_path, class: "btn btn-large btn-info" do
+          %span 구매하기
+      - if current_user.buckets.exists?(report_id: @report.id)
+        %span.btn.diabled 카트에 담기
+      - else
+        = link_to buckets_path(current_user), class: "btn btn-large", method: 'post' do
+          %span 카트에 담기
 
 .contents
   .row-fluid.contents-title
@@ -48,22 +55,25 @@
       = image_tag 'report/intro.png', alt: 'introduction'
   .row.intro
     .span12
-      %p= simple_format(@report.intro)
+      .content
+        %p= simple_format(@report.intro)
 
   .row.list-label
     .span2
       = image_tag 'report/list.png', alt: 'list'
   .row.list
     .span12
-      %p= simple_format(@report.list)
+      .content
+        %p= simple_format(@report.list)
 
 
   .row.content-label
     .span2
       = image_tag 'report/content.png', alt: 'content'
-  .row.content
+  .row
     .span12
-      %p= simple_format(@report.content)
+      .content.data
+        = image_tag "grade#{@report.expert_rate}.png", alt: "자료 소개", class: "grade_img"
 
 
   .row.comment-label
@@ -71,3 +81,4 @@
       = image_tag 'report/comment.png', alt: 'comment'
   .row.comment
     .span12
+      .content

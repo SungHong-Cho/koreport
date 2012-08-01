@@ -15,14 +15,14 @@
         .pakage-section
           .section-title
             .title-label
-              %span "Package #{@packages.count}."
+              %span= "패키지 상품 #{@packages.count}건"
             .section-content
-              = render(partial: 'package', collection: @packages) || "no result."
+              = render(partial: 'package', collection: @packages) || "검색된 결과가 없습니다."
     .row
       .span10       
         .report-section
           .section-title
             .title-label
-              %span "Report #{@reports.count}."
+              %span= "리포트 #{@reports.count}건"
             .section-content
-              = render(partial: 'report', collection: @reports) || "no result."
+              = render(partial: 'report', collection: @reports) || "검색된 결과가 없습니다."

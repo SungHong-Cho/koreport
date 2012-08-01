@@ -12,7 +12,8 @@
         - if user_signed_in?
           %ul.nav
             %li
-              = link_to "Cart", buckets_path(current_user)
+              %i.icon-shopping-cart
+              = link_to "장바구니", buckets_path(current_user)
             %li.dropdown#fat-menu
               %a.dropdown-toggle{'data-toggle' => 'dropdown'}
                 %i.icon-user.icon-large.icon-white
@@ -21,10 +22,10 @@
               %ul.dropdown-menu
                 - unless current_user.seller.nil?
                   %li
-                    = link_to "Make Report!", new_report_path
+                    = link_to "리포트 만들기", new_report_path
                     - if current_user.seller.name == "koreport"
                       %li
-                        = link_to "Package Management", packages_path
+                        = link_to "패키지 관리", packages_path
                 %li
                   = link_to user_path(current_user) do
                     %i.icon-user.icon-large
@@ -44,5 +45,4 @@
                     Sign out
         - else
           %ul.nav
-            %li have an account?
-            %li= link_to "Sign in", new_user_session_path
+            %li= link_to "계정이 있으시다면? 로그 인", new_user_session_path
