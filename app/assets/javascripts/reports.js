@@ -33,5 +33,5 @@ $(document).ready(function() {
 
 function printElem(options) {
 	$("#printArea").printElement(options);
-        history.back(-1);
+       $("#printArea").focus(); 
 }
