@@ -35,4 +35,4 @@
               .span3
                 = f.password_field :password, required: false
               .span2
-                = f.button '새 ', class: 'btn btn-primary'
+                = f.button '변경하기', class: 'btn btn-primary'

@@ -10,7 +10,7 @@
   %body
     = render 'layouts/header'
     .above
-      - unless current_page?(controller: 'koreport', action: 'search')
+      - unless current_page?(search_path)
         = content_tag(:div, yield, class: 'container')
       - else
         = yield
