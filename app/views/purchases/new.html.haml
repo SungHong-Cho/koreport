@@ -26,6 +26,8 @@
           %p= "#{report.price} WON"
       .row
         .span12.collapse{ :id => "content#{index}"}= report.content
+        = link_to new_purchases_path, class: "btn btn-large btn-info" do
+          %span buy!
 
   .overall-information
     .row
