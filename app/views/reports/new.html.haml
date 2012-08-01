@@ -1,5 +1,5 @@
 %fieldset
-  = form_for Report.new, :html => { class: "form-horizontal", :multipart => true } do |f|
+  = form_for @report, :html => { class: "form-horizontal", :multipart => true } do |f|
     .control-group
       = f.label '제목', class: "control-label"
       .controls

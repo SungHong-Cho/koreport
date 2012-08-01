@@ -4,10 +4,8 @@ class Purchase < ActiveRecord::Base
   belongs_to :user
   belongs_to :report
 
-  validates :user_id, :report_id, :type, :presence => true
+  validates :user_id, :item_id, :item_type, :presence => true
   belongs_to :package
 
   belongs_to :item, :polymorphic => true
-
-  validates :item, :presence => true
 end

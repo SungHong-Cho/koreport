@@ -14,7 +14,7 @@
           %th 합계
           %th 선택
         %tbody
-          - @bucket_items.each do |item|
+          - @report_items.each do |item|
             %tr
               %td= item.title
               %td= "#{item.page} Page"
@@ -23,5 +23,5 @@
               %td item.sum
               %td= check_box_tag "item_ids[]", item.id
       = submit_tag "delete seleted", class: "btn btn-info"
-      = submit_tag "구매하기" class: "btn"
+    = button_to "구매하기", order_purchases_path(reports: @report_items, packages: @packages), class: "btn"
   = button_to "select all", class: "btn"
