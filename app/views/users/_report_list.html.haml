@@ -1,0 +1,11 @@
+%table.table.table-stripped.report-list
+  %thead
+    %th{ width: '498px' } 제목
+    %th{ width: '74px' } 페이지 수
+    %th{ width: '67px' } 상품가격
+  %tbody
+    - @reports.each do |report|
+      %tr
+        %td= report.title
+        %td= "#{report.page} Page"
+        %td.sum= report.price

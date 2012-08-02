@@ -17,7 +17,7 @@
     .span12.info
       .row
         .span2.mark
-          = image_tag 'mark/hanyang.png', alt: 'hanyang', width: '100px', height: '100px'
+          = image_tag "mark/#{find_univ_name(@report)}.png", alt: find_univ_name(@report), width: '100px', height: '100px'
         .span10
           .row.title
             .span10
@@ -32,7 +32,7 @@
     .span2.color-tap
       %span= "color-tap"
     .span10.buttons
-      %span.price= "#{@report.price} 원"
+      %span.price= print_price(@report)
       - if current_user.purchases.exists?(@report)
         = link_to view_report_path(report), class: "btn btn-large btn-info" do
           %span 뷰어로 보기
@@ -40,9 +40,9 @@
         = link_to new_purchase_path, class: "btn btn-large btn-info" do
           %span 구매하기
       - if current_user.buckets.exists?(report_id: @report.id)
-        %span.btn.diabled 카트에 담기
+        %span.btn.diabled 장바구니 안
       - else
-        = link_to buckets_path(current_user), class: "btn btn-large", method: 'post' do
+        = link_to buckets_path(current_user, report_id: @report.id), class: "btn btn-large", method: 'post' do
           %span 카트에 담기
 
 .contents

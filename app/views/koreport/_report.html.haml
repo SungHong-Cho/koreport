@@ -1,11 +1,11 @@
 .report
   .row-fluid
     .span2
-      = image_tag 'mark/hanyang.png', alt: 'hanyang', width: '100px', height: '100px'
+      = image_tag "mark/#{find_univ_name(report)}.png", alt: find_univ_name(report), width: '100px', height: '100px'
     .span10
       .content
         %h4= link_to report.title, report
-        %p= report.intro
+        %p= print_compact(report.intro)
       .info
         %span= "#{report.price} 원"
         = link_to '자세히 보기', report_path(report), class:'btn btn-info'

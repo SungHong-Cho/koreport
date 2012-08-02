@@ -1,5 +1,5 @@
 class Purchase < ActiveRecord::Base
-  attr_accessible :isFeedback, :isPaid, :user_id 
+  attr_accessible :isFeedback, :isPaid, :user_id, :item_id, :item_type
 
   belongs_to :user
   belongs_to :report

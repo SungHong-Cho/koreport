@@ -18,10 +18,10 @@
           %span 비밀번호 변경
         .content
           = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-           .form-inputs
-             = f.input :email, :required => true, :autofocus => true
-             = f.input :password, :autocomplete => "off", :hint => "비밀번호를 변경하지 않겠다면 아무것도 입력하지 마세요!", :required => false
-             = f.input :password_confirmation, :required => false
-             = f.input :current_password, :hint => "비밀번호를 변경하겠다면 현재 비밀번호를 입력하세요.", :required => true
-             .form-actions
-               = f.button :submit, "Update"
+            .form-inputs
+              = f.input :email, label: "이메일", :required => true, :autofocus => true
+              = f.input :password, label: "비밀번호", :autocomplete => "off", :hint => "비밀번호를 변경하지 않겠다면 아무것도 입력하지 마세요!", :required => false
+              = f.input :password_confirmation, label: "비밀번호 확인", :required => false
+              = f.input :current_password, label: "현재 비밀번호", :hint => "비밀번호를 변경하겠다면 현재 비밀번호를 입력하세요.", :required => true
+              .form-actions
+                = f.button :submit, "Update"

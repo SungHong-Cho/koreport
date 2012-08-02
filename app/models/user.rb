@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_one :seller
   has_many :purchases
+  #has_many :purchase_reports, :as => :item, :source => :report
+  #has_many :purchase_packages, :as => :item, :source => :package
   has_many :buckets
   has_many :bucket_reports, :through => :buckets, :source => :report
   has_many :reports
