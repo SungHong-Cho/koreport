@@ -37,7 +37,7 @@
         = link_to view_report_path(@report), class: "btn btn-large btn-info" do
           %span 뷰어로 보기
       - else
-        = link_to new_purchase_path, class: "btn btn-large btn-info" do
+        = link_to order_purchases_path(reports: @report.id), class: "btn btn-large btn-info", method: 'post' do
           %span 구매하기
       - if current_user.buckets.exists?(report_id: @report.id)
         %span.btn.diabled 장바구니 안
