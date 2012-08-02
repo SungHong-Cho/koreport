@@ -1,0 +1,15 @@
+%table.table.table-stripped.package.list
+  %thead
+    %th 제목
+    %th 페이지 수
+    %th 상품가격
+    %th 할인가격
+    %th 합계
+  %tbody
+    - @packages.each do |package|
+          %tr
+            %td= package.name
+            %td= "#{item.page} Page"
+            %td= package.price
+            %td package.discount
+            %td package.sum

@@ -1,26 +1,41 @@
 // Place all the styles related to the purchases controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.progress {
-    text-align: right;
-}
-
-.order {
-    border: 3px solid #FAFAFA;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-}
-.total-price {
-    background: url('total_price_bg.png') center no-repeat;
-    width: 864px;
-    height: 113px;
-    margin: 0 auto;
-    td {
-        width: 288px;
+.package-list, .report-list {
+    thead {
+        border-bottom: 3px solid #157bdc;
+        th {
+            text-align: center;
+        }
+    }
+    tbody {
+        td {
+            text-align: center;
+        }
+        .sum {
+            color: #F00;
+        }
     }
 }
 
-.payment {
-    margin: 0 auto;
+.payment-result {
+    background: url('payment_bg.png') center no-repeat;
+    height: 113px;
+    thead {
+        th {
+            text-align: right;
+            padding-right: 5px;
+        }
+    }
+    
+    tbody {
+        td {
+            text-align: right;
+            padding-right: 30px;
+            font-size: 20px;
+        }
+        .total {
+            color: #F00;
+        }
+    }
 }

@@ -1,59 +1,64 @@
 - content_for :below do
-  .order
-    .row
-      .span12
-        = image_tag('order_label.png', alt: '주문/결제')
+  .frame
+    .title
+      = image_tag('order_label.png', alt: '주문/결제')
+    .process
+      = image_tag('process_order.png', alt: '주문/결제')
+    .content
+      %h3 1-1. 패키지 구입상품
+      - if @packages.any?
+        = render 'shared/package_list', locals: { packages: @packages }
+      - else
+        %br
+        %h4 구매한 상품이 없습니다.
+        %br
+          
+      %h3 1-2. 리포트 구입상품
+      - if @reports.any?
+        = render 'shared/report_list', locals: { reports: @reports }
+      - else
+        %br
+        %h4 구매한 상품이 없습니다.
+        %br
+
+      %h3 2. 결제금액
+      = render 'shared/payment_result'
+      
+      %table.payment
+        %thead
+          %tr
+            %th
+              %h3 3. 결제정보
+            %th
+              %h3 4. 결제하기
         
-    %table.table.table-stripped.package.list
-      %thead
-        %th 제목
-        %th 페이지 수
-        %th 상품가격
-        %th 할인가격
-        %th 합계
-      %tbody
-        - @packages.each do |package|
-          %tr
-            %td= package.name
-            %td= "#{item.page} Page"
-            %td= package.price
-            %td package.discount
-            %td package.sum
+          %span dd
+          %tbody
+            %tr
+              %td
+                = form_tag purchases_path(reports: @reports, packages: @packages, user_id:current_user.id), class: "form-horizontal" do
+                  %p * 지금은 계좌이체를 통한 구매만 가능합니다.
+                  %p 결제금액을
+                  %h4 우리은행 (주) 코리포트 1006-601-376616
+                  %p 으로 입금하시면 즉시 서비스를 이용하실 수 있습니다.
+                  .account
+                    %p 입금자 확인을 위해 정확한 정보를 입력해주세요.
+                    %fieldset
+                      .control-group
+                        = label_tag '제목', nil, class: "control-label"
+                        .controls
+                          = text_field_tag :title
 
-    %table.table.table-stripped.report.list
-      %thead
-        %th 제목
-        %th 페이지 수
-        %th 상품가격
-      %tbody
-        - @reports.each do |report|
-          %tr
-            %td= report.title
-            %td= "#{report.page} Page"
-            %td= report.price
+                      .control-group
+                        = label_tag '대학', nil, class: "control-label"
+                        .controls
+                          = text_field_tag :univ_list
 
-    %h3 2. 결제금액
-    %table.total-price
-      %thead
-        %th.price
-        %th.dc-price
-        %th.total
-      %tbody
-        %tr
-          %td sum
-          %td dc
-          %td total
-
-    %table.payment
-      %thead
-        %th
-          %h3 3. 결제정보
-        %th
-          %h3 4. 결제하기
-      %tbody
-        %tr
-          %td= render "account"          
-          %td
-            %h3 최종결제금액
-            %h2 2500원
-            = button_to "결제하기", purchases_path(reports: @reports, packages: @packages, user_id: current_user.id), class: "btn btn-primary"
+                      .control-group
+                        = label_tag '계열', nil, class: "control-label"
+                        .controls
+                          = text_field_tag :college_list
+              %td
+                %h3 최종결제금액
+                %h2 2500원
+                = submit_tag "결제하기", class: "btn btn-primary"

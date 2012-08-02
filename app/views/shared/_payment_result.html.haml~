@@ -1,0 +1,10 @@
+%table
+  %thead
+    %th.price
+    %th.dc-price
+    %th.total
+  %tbody
+    %tr
+      %td sum
+      %td dc
+      %td total

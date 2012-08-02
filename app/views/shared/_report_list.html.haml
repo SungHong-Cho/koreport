@@ -1,26 +1,11 @@
-.report-list
-  .table-head
-    .row
-      = switch_span("title", content_tag(:h3, "title"))
-      .span1
-        %h3 page
-      .span1
-        %h3 price
-      .span1
-        %h3 preview
-      .span1
-        %h3 viewing
-  .table-body
-    - @reports.each_with_index do |report, index|
-      .row
-        = switch_span("title", content_tag(:p, report.title))
-        .span1
-          %p= report.page
-        .span1
-          %p= "#{report.price} WON"
-        .span1
-          %button.btn.btn-info{'data-toggle' => 'collapse', 'data-target' => "#report-content#{index}"} preview
-        .span1
-          = link_to "viewing", view_report_path(current_user), class: "btn btn-success"
-      .row
-        .span12.collapse{ :id => "report-content#{index}"}= report.intro
+%table.table.table-stripped.report-list
+  %thead
+    %th{ width: '498px' } 제목
+    %th{ width: '74px' } 페이지 수
+    %th{ width: '67px' } 상품가격
+  %tbody
+    - @reports.each do |report|
+      %tr
+        %td= report.title
+        %td= "#{report.page} Page"
+        %td.sum= report.price

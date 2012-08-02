@@ -1,0 +1,16 @@
+%table.table.table-stripped.package-list
+  %thead
+    %tr
+      %th{ width: '342px'} 제목
+      %th{ width: '85px' } 자소서 수
+      %th{ width: '71px' } 상품가격
+      %th{ width: '74px' } 할인가격
+      %th{ width: '67px' } 구매가격
+  %tbody
+    - @packages.each do |package|
+      %tr
+        %td.title= link_to "#{package.name}", package_path(package)
+        %td.count= package.reports.count
+        %td.price= package.price
+        %td.dc package.discount
+        %td.sum package.sum
