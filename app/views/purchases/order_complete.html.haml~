@@ -1,11 +1,11 @@
 - content_for :below do
   .frame
     .title
-      = image_tag('order_label.png', alt: '주문/결제')
+      = image_tag('order_complete_label.png', alt: '결제완료')
     .process
-      = image_tag('process_order.png', alt: '주문/결제')
+      = image_tag('process_order_complete.png', alt: '결제완료')
     .content
-      %h3 1-1. 패키지 구입상품
+      %h3 구입한 패키지
       - if @packages.any?
         = render 'shared/package_list', locals: { packages: @packages }
       - else
@@ -13,7 +13,7 @@
         %h4 구매한 상품이 없습니다.
         %br
           
-      %h3 1-2. 리포트 구입상품
+      %h3 구입한 리포트
       - if @reports.any?
         = render 'shared/report_list', locals: { reports: @reports }
       - else
@@ -21,7 +21,8 @@
         %h4 구매한 상품이 없습니다.
         %br
 
-      %h3 2. 결제금액
+      .payment_result
+        %h3= "총 구매 금액 : #{@price_sum} 원" 
       = render 'shared/payment_result'
       
       %table.payment
@@ -45,26 +46,20 @@
                     %p 입금자 확인을 위해 정확한 정보를 입력해주세요.
                     %fieldset
                       .control-group
-                        = label_tag '입금자', nil, class: "control-label"
+                        = label_tag '제목', nil, class: "control-label"
                         .controls
-                          = text_field_tag :payer_name, value: current_user.payer_name
+                          = text_field_tag :title
 
                       .control-group
-                        = label_tag '은행', nil, class: "control-label"
+                        = label_tag '대학', nil, class: "control-label"
                         .controls
-                          = text_field_tag :bank, value: current_user.bank
+                          = text_field_tag :univ_list
 
                       .control-group
-                        = label_tag '계좌번호', nil, class: "control-label"
+                        = label_tag '계열', nil, class: "control-label"
                         .controls
-                          = text_field_tag :account, value: current_user.bank
-                          
-                      .control-group
-                        = label_tag '전화번호', nil, class: "control-label"
-                        .controls
-                          = text_field_tag :tel, value: current_user.tel
-                      = submit_tag "결제하기", class: "btn btn-primary"
+                          = text_field_tag :college_list
               %td
                 %h3 최종결제금액
                 %h2 2500원
-
+                = submit_tag "결제하기", class: "btn btn-primary"

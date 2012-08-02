@@ -52,14 +52,13 @@
         }
     }
 
-    .content {
-        padding: 20px 10px;
-        .data {
-            text-align: center;
-        }
-    }
-
-    div[class$='label'] {
-        margin-left: -30px;
+    .label {
+        margin-left: 10px;
+        width: 100px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        vertical-align: middle;
+        background: url('label_bg.png') center no-repeat;
     }
 }

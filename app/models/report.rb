@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Report < ActiveRecord::Base
   attr_accessible :college_list, :content, :dep_list, :hit, :intro, :list, :page, :price, :title, :univ_list, :expert_rate, :year, :documents_attributes, :docs
 
@@ -23,11 +24,19 @@ class Report < ActiveRecord::Base
     end
   end
 
-  def docs=(doc)
-    @docs = doc
+  def grade_price
+    case self.expert_rate
+    when 1, 4, 5, 7
+      3800
+    when 2
+      2800
+    when 3
+      1800
+    end
   end
 
-  def docs
-    @docs
+  def purchase(user)
+    self.purchases.where(user_id: user.id).first
   end
+    
 end

@@ -21,14 +21,4 @@ module KoreportHelper
     text[0,140] + "..." if text.length > 140
   end
 
-  def print_price(report)
-    case report.expert_rate
-    when 1, 4, 5, 7
-      "3800 원"
-    when 2
-      "2800 원"
-    when 3
-      "1800 원"
-    end
-  end
 end

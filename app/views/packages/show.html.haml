@@ -1,2 +1,69 @@
-%h1 Packages#show
-%p Find me in app/views/packages/show.html.haml
+.top-control
+  .row
+    .span3
+      = link_to search_path, class: "btn btn-large" do
+        %i.icon-chevron-left.icon-white.icon-large
+        %span 뒤로
+
+.panel
+  .row
+    .span12.info
+      .row
+        .span2.mark
+          = image_tag 'mark/package.png', width: '100px', height: '100px'
+        .span10
+          .row.title
+            .span10
+              %h2= @package.name
+          .row.info
+            .span10
+              %i.icon-file.icon-large
+              %span= "#{@package.reports.count} 개"
+              %i.icon-time.icon-large
+              %span.created-time= @package.created_at.strftime("%F")
+  .row-fluid.control
+    .span2.color-tap
+      %span= "color-tap"
+    .span10.buttons
+      %span.price= @package.price
+      - if current_user.purchases.exists?(@package)
+        = link_to user_path(current_user), class: "btn btn-large btn-info" do
+          %span 마이페이지로 가기
+      - else
+        = link_to new_purchase_path, class: "btn btn-large btn-info" do
+          %span 구매하기
+      /- if current_user.buckets.exists?(package_id: @package.id)
+      / %span.btn.diabled 장바구니 안
+      /- else
+      / = link_to buckets_path(current_user, package_id: @package.id), class: "btn btn-large", method: 'post' do
+      /%span 카트에 담기
+
+.contents
+  .row-fluid.contents-title
+    .span3
+      %h2 자세히 보기
+  .intro
+    .row
+      .span2.label
+        %span 소개글
+    .row
+      .span12
+        .content
+          %p= simple_format(@package.intro)
+
+  .list
+    .row
+      .span2.label
+        %span 상품구성
+    .row
+      .span12
+        .content
+          = image_tag @package.content_img.url
+  
+  .comment
+    .row
+      .span2.label
+        %span 댓  글
+    .row
+      .span12
+        .data

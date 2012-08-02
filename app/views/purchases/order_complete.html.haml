@@ -1,0 +1,30 @@
+- content_for :below do
+  .frame
+    .title
+      = image_tag('order_complete_label.png', alt: '결제완료')
+    .process
+      = image_tag('process_order_complete.png', alt: '결제완료')
+    .content
+      %h3 구입한 패키지
+      - if @packages.any?
+        = render 'shared/package_list', locals: { packages: @packages }
+      - else
+        %br
+        %h4 구매한 상품이 없습니다.
+        %br
+          
+      %h3 구입한 리포트
+      - if @reports.any?
+        = render 'shared/report_list', locals: { reports: @reports }
+      - else
+        %br
+        %h4 구매한 상품이 없습니다.
+        %br
+
+      .payment_result
+        %h3= "총 구매 금액 : #{@price_sum} 원" 
+
+      .go-to-my-page
+        = link_to "마이페이지로 가기", user_path(current_user), class: "btn btn-large"
+
+        = debug(params[:purchases])

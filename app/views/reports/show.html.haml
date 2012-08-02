@@ -32,9 +32,9 @@
     .span2.color-tap
       %span= "color-tap"
     .span10.buttons
-      %span.price= print_price(@report)
+      %span.price= "#{@report.grade_price} 원"
       - if current_user.purchases.exists?(@report)
-        = link_to view_report_path(report), class: "btn btn-large btn-info" do
+        = link_to view_report_path(@report), class: "btn btn-large btn-info" do
           %span 뷰어로 보기
       - else
         = link_to new_purchase_path, class: "btn btn-large btn-info" do
@@ -48,39 +48,38 @@
 .contents
   .row-fluid.contents-title
     .span3
-      %h2 description
+      %h2 자세히 보기
+  .intro
+    .row
+      .span2.label
+        %span 미리보기
+    .row
+      .span12
+        .content
+          %p= simple_format(@report.intro)
 
-  .row.intro-label
-    .span2
-      = image_tag 'report/intro.png', alt: 'introduction'
-  .row.intro
-    .span12
-      .content
-        %p= simple_format(@report.intro)
-
-  .row.list-label
-    .span2
-      = image_tag 'report/list.png', alt: 'list'
-  .row.list
-    .span12
-      .content
-        %p= simple_format(@report.list)
-
-
-  .row.content-label
-    .span2
-      = image_tag 'report/content.png', alt: 'content'
-  .row
-    .span12
-      .content.data
-        = image_tag "grade#{@report.expert_rate}.png", alt: "자료 소개", class: "grade_img"
+  .list
+    .row
+      .span2.label
+        %span 목  차
+    .row
+      .span12
+        .content
+          %p= simple_format(@report.list)
 
 
-  .row.comment-label
-    .span2
-      = image_tag 'report/comment.png', alt: 'comment'
-  .row.comment
-    .span12
-      .content
-
-= debug(@report)
+  .content
+    .row
+      .span2.label
+        %span 자료소개
+    .row
+      .span12
+        .data
+          = image_tag "grade#{@report.expert_rate}.png", alt: "자료 소개", class: "grade_img"
+  .comment
+    .row
+      .span2.label
+        %span 댓  글
+    .row
+      .span12
+        .data

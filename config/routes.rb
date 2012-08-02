@@ -25,7 +25,7 @@ Koreport::Application.routes.draw do
   resources :purchases, :only => [:index, :create, :new] do
     collection do
       post 'order'
-      post 'order_complete'
+      get 'order_complete'
     end
   end
 
