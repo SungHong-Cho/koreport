@@ -1,19 +1,32 @@
-.user-information
+.row.page-header
+  .span2.offset2.title 마이 페이지
+  .span2.offset6.email= current_user.email if user_signed_in?
+
+- content_for :below do
   .row
-    .span8.email
-      %h2= current_user.email
-    .span2.edit-profile
-      = link_to "edit Profile", edit_user_registration_path(current_user), class: "btn btn-large btn-primary"
     .span2
-      %h2 temp
+      %ul.nav.nav-pills.nav-stacked
+        %li
+          = link_to '구매내역 관리', '#', class: 'active'
+        %li
+          = link_to '비밀번호 변경', '#'
+    .span10
+      .window
+        .row.window-bar
+          .span3.window-label
+            %span 구매내역 관리
+          .span7
+            %span 홈 > 마이 페이지 > 구매내역 관리
+        .row.window-content
+          .span10
+            = render 'shared/report_list'
+
 /
   .pakage.purchase
     .table-head
       .row
         .span8
           %h3 title
-        .span2
-          %h3 seller
         .span1
           %h3 page
         .span1
@@ -25,8 +38,6 @@
         .row
           .span6
             %p= report.title
-          .span2
-            %p= report.user.seller.name
           .span1
             %p= report.page
           .span1
@@ -36,5 +47,5 @@
         .row
           .span12.collapse{ :id => "content#{index}"}= report.content
 
-= render 'shared/report_list'
+
   

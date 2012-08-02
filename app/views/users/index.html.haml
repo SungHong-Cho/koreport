@@ -1,0 +1,19 @@
+.row
+  .span2.offset2title 마이 페이지
+  .span2.offset6.email= current_user.email if user_signed_in?
+- content_for :below
+.row
+  .span2
+    %ul.nav.nav-pills.nav-stacked
+      %li
+        = link_to '구매내역 관리', '#', class: active
+      %li
+        = link_to '비밀번호 변경', '#'
+  .span10
+    ..window
+      .row.window-bar
+        .span2.window-label
+          %span 구매내역 관리
+        .span8
+          %span 홈 > 마이 페이지 > 구매내역 관리
+  

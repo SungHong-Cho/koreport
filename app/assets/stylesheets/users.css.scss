@@ -6,8 +6,6 @@
 .window {
     background: url('window_bg.png') center bottom no-repeat;
     background-color: white;
-    margin-top: 100px;
-    margin-bottom: 100px;
     border-top: 5px solid #939393;
     color: #2589c9;
     padding: 0;
@@ -30,6 +28,16 @@
             margin-left: 0px;
             padding-right: 10px;
             width: 790px;
+            height: 50px;
+            line-height: 50px;
+            text-align: right;
+            vertical-align: baseline;
+            background-color: #FAFAFA;
+        }
+        .span7 {
+            margin-left: 0px;
+            padding-right: 10px;
+            width: 550px;
             height: 50px;
             line-height: 50px;
             text-align: right;
@@ -61,4 +69,25 @@
             }
         }
     }
+}
+
+// sign-up-complete
+.sign-up-complete {
+    width: 940px;
+    height: 443px;
+    background: url('sign_up_complete.png') center no-repeat;
+    margin: 100px auto;
+    .go-to-main-button {
+        margin-left: 420px;
+        padding-top: 300px;
+    }
+}
+
+// my page.
+.page-header {
+    height: 60px;
+}
+
+.window-content {
+    padding-bottom: 150px;
 }

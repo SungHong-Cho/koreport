@@ -5,13 +5,16 @@ Koreport::Application.routes.draw do
 
   match 'search' => 'koreport#search', :as => :search
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   resources :users, :only => [:index, :show] do
     member do
       resources :buckets, :only => [:index, :create] do
         delete 'destroy', on: :collection
       end
+    end
+    collection do
+      get 'sign_up_complete'
     end
   end
 

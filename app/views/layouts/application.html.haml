@@ -11,21 +11,19 @@
     = render 'layouts/header'
     - unless yield.blank?
       .above
-        - unless current_path?(params[:controller], params[:action])
-          = content_tag(:div, yield, class: 'container')
-        - else
-          = yield
+        /- unless current_path?(params[:controller], params[:action])
+        = content_tag(:div, yield, class: 'container')
+        /- else
+        /= yield
     .below
-      - unless current_path?(params[:controller], params[:action])
-        = content_tag(:div, yield(:below), class: 'container')
-      - else
-        = yield :below
+      /- unless current_path?(params[:controller], params[:action])
+      = content_tag(:div, yield(:below), class: 'container')
+      /- else
+      / = yield :below
 
-    - unless current_path?(params[:controller], params[:action])
+      /- unless current_path?(params[:controller], params[:action])
       = content_tag(:div, render('layouts/footer'), class: 'container')
-    - else
-      .row
-        .span10.offset2
-          = render('layouts/footer')
-
-    = render 'layouts/debug'
+      /- else
+      /  .row
+      /    .span10.offset2
+      /      = render('layouts/footer')

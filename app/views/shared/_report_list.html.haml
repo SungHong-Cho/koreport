@@ -3,8 +3,6 @@
     .row
       = switch_span("title", content_tag(:h3, "title"))
       .span1
-        %h3 seller
-      .span1
         %h3 page
       .span1
         %h3 price
@@ -17,8 +15,6 @@
       .row
         = switch_span("title", content_tag(:p, report.title))
         .span1
-          %p= report.user.seller.name
-        .span1
           %p= report.page
         .span1
           %p= "#{report.price} WON"
@@ -27,4 +23,4 @@
         .span1
           = link_to "viewing", view_report_path(current_user), class: "btn btn-success"
       .row
-        .span12.collapse{ :id => "report-content#{index}"}= report.content
+        .span12.collapse{ :id => "report-content#{index}"}= report.intro
