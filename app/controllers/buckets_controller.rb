@@ -28,8 +28,16 @@ class BucketsController < ApplicationController
 
   def destroy
     @buckets = current_user.buckets
+    puts("##################################################################")
+    puts("##################################################################")
+    puts("##################################################################")
+    puts("##################################################################")
+    puts("##################################################################")
+    logger.debug("########################################################")
+    logger.warning("destroy? #{params[:report_item_ids]} + #{params[:package_item_ids]}")
+    logger.info("##################################################################")
     @buckets.where(bucket_item_id: params[:report_item_ids], bucket_item_type: 'Report').destroy_all
     @buckets.where(bucket_item_id: params[:package_item_ids], bucket_item_type: 'Package').destroy_all
-      redirect_to buckets_path(current_user)
+    redirect_to buckets_path(current_user)
   end
 end
