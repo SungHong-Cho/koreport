@@ -27,9 +27,9 @@ class User < ActiveRecord::Base
   def buy_this?(item)
     @item = item.class.to_s
     @purchases = self.purchases.where(item_type: @item, item_id: item.id)
-    @purchase = @purchases.first if @purchases.count > 1 # 배열이면 에러나게 고쳐야 함.
+    @purchase = @purchases.first if @purchases # 배열이면 에러나게 고쳐야 함.
     
-    if @purchase.nil? || @purchase.empty?
+    if @purchase.nil?
       false
     else
         @purchase.isPaid
