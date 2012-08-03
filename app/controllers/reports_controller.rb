@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 class ReportsController < ApplicationController
   def index
+    if user_signed_in? && not(current_user.seller.nil?)
+      @reports = current_user.reports.all
+    end
   end
 
   def create
@@ -19,18 +22,32 @@ class ReportsController < ApplicationController
   end
 
   def edit
+    @report = Report.find(params[:id])
   end
 
   def show
     @report = Report.find(params[:id])
+    @reports = Array.new << @report
     @package = Package.new
     @packages = Package.all
   end
 
   def update
+    @report = Report.find(params[:id])
+    if @report.update_attributes(params[:report])
+      redirect_to reports_path
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
+    @report = Report.find(params[:id])
+    if @report.destroy
+      redirect_to reports_path
+    else
+      redirect_to root_path
+    end
   end
 
   def view

@@ -30,7 +30,7 @@
         - if current_user.buy_this?(@package)
           %span 구매하신 상품입니다.
         - else
-          = link_to order_purchases_path(packages: @package), class: "btn btn-large btn-info", method: 'post' do
+          = link_to order_purchases_path(package_item_ids: @package.id), class: "btn btn-large btn-info", method: 'post' do
             %span 구매하기
 
         - if current_user.in_cart?(@package)

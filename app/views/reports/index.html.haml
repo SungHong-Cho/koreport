@@ -1,2 +1,37 @@
-%h1 Reports#index
-%p Find me in app/views/reports/index.html.haml
+%h1 리포트 관리
+
+.package.infomation
+  .row
+    .span8.name
+      %h2= current_user.seller.name
+    .span2.edit-profile
+      = link_to 'Make Report', new_report_path, class: 'btn btn-large btn-primary'
+    .span2
+      %h2 temp
+
+.pakage.list
+  .table-head
+    .row
+      .span6
+        %h3 Report Name
+      .span2
+        %h3 Package price
+      .span1
+        %h3 edit
+      .span1
+        %h3 delete
+      .span2
+        %h3 view
+  .table-body
+    - @reports.each_with_index do |report, index|
+      .row
+        .span6
+          %p= report.title
+        .span2
+          %p= "#{report.price} WON"
+        .span1
+          %p= link_to 'edit', edit_report_path(report), class: 'btn btn-info'
+        .span1
+          %p= link_to 'delete', report_path(report), class: 'btn btn-danger', method: :delete
+        .span2
+          = link_to '상세', report_path(report), class: 'btn btn-success'

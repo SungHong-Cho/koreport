@@ -15,11 +15,13 @@
           = link_to '패키지', search_path(search: '패키지')
         %li{ class: ('active' if @category == '공모전') } 
           = link_to '공모전', search_path(search: '공모전')
+        %li
+          = image_tag 'order_banner.png', alt: '결제정보'
     .span10
       = image_tag("#{@category}.png", alt: @category) if @category
       - if @packages.empty? && @reports.empty?
         .out-of-result
-          검색결과가 없다네~
+          검색결과가 없습니다.
   
       - if @packages.any?
         .row

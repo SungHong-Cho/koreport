@@ -10,12 +10,22 @@
 			width:90%;
 			float:left;	
 		}
+
+		@media screen{
+			not_show{
+				display:none;
+			}
+		}
+		@media print{
+			not_show{
+			}
+		}
 	</style>
   </head>
   <body>
   <div id="wapper">
         <nav style="height:1140px;overflow-y:auto;">   
-	<p>print it</p>
+           <input type=button value="프린트하기" onclick=printElem({printMode:"iframe",leaveOpen:true});>	
 	<div id="galleryThumbImg" style="width:80px;">
              <% @counter = 0 %>
              <% @images.each do |doc_img| %>
@@ -31,5 +41,12 @@
 	<div id="myDiv" style="width:808px; height:1143px; overflow:hidden; border:solid 1px #a6a6a6;"></div>
 	</section>
   </div>
-  </body>
+
+  <not_show>
+  <div id="printArea">
+    <% @images.each do |doc_img| %>
+    <%= image_tag(doc_img.url) %>
+    <% end %>
+  </div>
+  </not_show>
 </html>

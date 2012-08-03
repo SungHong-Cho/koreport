@@ -1,2 +1,58 @@
-%h1 Reports#edit
-%p Find me in app/views/reports/edit.html.haml
+%fieldset
+  = form_for @report, :html => { class: "form-horizontal", :multipart => true } do |f|
+    .control-group
+      = f.label '제목', class: "control-label"
+      .controls
+        = f.text_field :title
+
+    .control-group
+      = f.label '대학', class: "control-label"
+      .controls
+        = f.text_field :univ_list
+
+    .control-group
+      = f.label '계열', class: "control-label"
+      .controls
+        = f.text_field :college_list
+
+    .control-group
+      = f.label '태그', class: "control-label"
+      .controls
+        = f.text_field :dep_list
+
+    .control-group
+      = f.label '연도', class: "control-label"
+      .controls
+        = f.text_field :year
+
+
+    .control-group
+      = f.label '페이지', class: "control-label"
+      .controls
+        = f.text_field :page
+
+    .control-group
+      = f.label '등급', class: "control-label"
+      .controls
+        = f.text_field :expert_rate
+
+    .control-group
+      = f.label '미리보기', class: "control-label"
+      .controls
+        = f.text_area :intro
+
+    .control-group
+      = f.label '질문', class: "control-label"
+      .controls
+        = f.text_area :list
+
+
+    %h2 !! 이 밑이 도큐먼트 이미지 !!
+    
+    = f.fields_for :documents do |doc|
+      .control-group
+        = doc.label :doc_img, class: "control-label"    
+        .controls
+          = doc.file_field :doc_img
+  
+    = f.submit "Create Report!", class: "btn btn-large btn-primary"

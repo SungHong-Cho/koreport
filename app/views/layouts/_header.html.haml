@@ -21,9 +21,9 @@
                 = current_user.email
                 %b.caret
               %ul.dropdown-menu
-                - unless current_user.seller.nil?
+                - unless current_user.seller.nil?                  
                   %li
-                    = link_to "리포트 만들기", new_report_path
+                    = link_to "리포트 관리", reports_path
                     - if current_user.seller.name == "koreport"
                       %li
                         = link_to "패키지 관리", packages_path

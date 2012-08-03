@@ -39,3 +39,20 @@
         }
     }
 }
+
+.order-complete {
+    background: url('order_complete.png') center no-repeat;
+    height: 420px;
+    .phrase {
+        padding-top: 200px;
+        padding-left: 400px;
+        .price {
+            color: #F00;
+            font-size: 15px;
+        }
+        .account {
+            font-weight: bold;
+            font-size: 15px;
+        }
+    }
+}

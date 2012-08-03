@@ -25,6 +25,7 @@ class PackagesController < ApplicationController
 
   def show
     @package = Package.find(params[:id])
+    @packages = Array.new << @package
   end
 
   def update

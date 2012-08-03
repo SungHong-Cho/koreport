@@ -79,11 +79,21 @@ class PurchasesController < ApplicationController
 
     @reports = Report.find_all_by_id(@report_ids)
     @packages = Package.find_all_by_id(@package_ids)
+@total_original_price = 0
+    @total_discount = 0
+    @total_price = 0
+    
+    @reports.each do |report|
+      @total_price += report.grade_price
+    end
 
-    @price_sum = 0
-
-    @reports.each { |report| @price_sum += report.grade_price } unless @reports.empty?
-    @packages.each { |report| @price_sum += package.price } unless @packages.empty?
+    @total_original_price = @total_price
+    
+    @packages.each do |package|
+      @total_original_price += package.original_price
+      @total_discount += package.discount
+      @total_price += package.price
+    end
   end
 
   def update

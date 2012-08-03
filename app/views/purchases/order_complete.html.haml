@@ -5,6 +5,16 @@
     .process
       = image_tag('process_order_complete.png', alt: '결제완료')
     .content
+      .order-complete
+        .row
+          .span8.phrase
+            %span 총
+            %span.price= "#{@total_price} 원"
+            %span 을 3일 이내에
+            %p.account 우리은행 (주)코리포트 1006-601-376616 으로 입금해주십시오.
+            %p 승인이 완료되면 마이페이지에서 자기소개서를 확인하실 수 있습니다.
+            
+            
       %h3 구입한 패키지
       - if @packages.any?
         = render 'shared/package_list', locals: { packages: @packages }
@@ -21,8 +31,11 @@
         %h4 구매한 상품이 없습니다.
         %br
 
+      %h3 결제금액
+      = render 'shared/payment_result'
+      
       .payment_result
-        %h3= "총 구매 금액 : #{@price_sum} 원" 
+        %h3= "총 구매 금액 : #{@total_price} 원" 
 
       .go-to-my-page
         = link_to "마이페이지로 가기", user_path(current_user), class: "btn btn-large"
