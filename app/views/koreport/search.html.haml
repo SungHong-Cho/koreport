@@ -15,7 +15,7 @@
         %li{ class: ('active' if @category == '공모전') } 
           = link_to '공모전', search_path(search: '공모전')
     .span10
-      = image_tag("#{@category}.png", alt: @category) if @product.nil?
+      = image_tag("#{@category}.png", alt: @category) if @category
       - if @packages.empty? && @reports.empty?
         .out-of-result
           검색결과가 없다네~
