@@ -17,7 +17,7 @@
     .span12.info
       .row
         .span2.mark
-          = image_tag "mark/#{find_univ_name(@report)}.png", alt: find_univ_name(@report), width: '100px', height: '100px'
+          = image_tag "mark/#{@report.univ_name}.png", alt: @report.univ_name, width: '100px', height: '100px'
         .span10
           .row.title
             .span10

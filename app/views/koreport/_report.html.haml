@@ -1,7 +1,7 @@
 .report
   .row-fluid
     .span2
-      = image_tag "mark/#{find_univ_name(report)}.png", alt: find_univ_name(report), width: '100px', height: '100px'
+      = image_tag "mark/#{report.univ_name}.png", alt: report.univ_name, width: '100px', height: '100px'
     .span10
       .content
         %h4= link_to report.title, report
@@ -11,7 +11,7 @@
         = link_to '자세히 보기', report_path(report), class:'btn btn-info'
         - if user_signed_in?
           - if report.buckets.empty?
-            = link_to '카트에 담기', buckets_path(current_user, report_id: report.id), method: 'post', class: 'btn'
+            = link_to '카트에 담기', buckets_path(current_user, bucket_item_type: 'Report',bucket_item_id: report.id), method: 'post', class: 'btn'
           - else
             %span.btn.disabled 카트에 담김        
         

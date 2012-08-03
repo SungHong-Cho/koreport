@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730110554) do
+ActiveRecord::Schema.define(:version => 20120803043243) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -21,10 +21,12 @@ ActiveRecord::Schema.define(:version => 20120730110554) do
   end
 
   create_table "buckets", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.integer  "report_id",  :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id",                                :null => false
+    t.integer  "report_id",                              :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.integer  "bucket_item_id"
+    t.string   "bucket_item_type", :default => "Report", :null => false
   end
 
   create_table "documents", :force => true do |t|

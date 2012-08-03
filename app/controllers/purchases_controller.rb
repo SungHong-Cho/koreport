@@ -1,10 +1,11 @@
 
 class PurchasesController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
   end
 
   def create
-    if user_signed_in?
       @reports = Report.find_all_by_id(params[:reports])
       @packages = Package.find_all_by_id(params[:packages])
       @purchases = Array.new
@@ -23,10 +24,6 @@ class PurchasesController < ApplicationController
       current_user.tel = params[:tel]
 
       redirect_to order_complete_purchases_path(purchases: @purchases, user_id: current_user.id)
-      
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   def new

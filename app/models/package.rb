@@ -3,7 +3,7 @@ class Package < ActiveRecord::Base
 
   has_and_belongs_to_many :reports
   has_many :purchases, :as => :item
-  
+  has_many :buckets, :as => :bucket_item
   has_attached_file :thumb_img
   has_attached_file :content_img
 
@@ -23,5 +23,19 @@ class Package < ActiveRecord::Base
     else
       find(:all)
     end
+  end
+
+  def original_price
+    case self.price
+    when 14900
+      19000
+
+    when 9900
+      11400
+    end
+  end
+
+  def discount
+    self.price - original_price
   end
 end

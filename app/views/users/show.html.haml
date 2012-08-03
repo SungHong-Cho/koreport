@@ -18,7 +18,7 @@
           %span 구매내역 관리
         .content
           %h3 1. 패키지 구입상품
-          - if @packages.any?
+          - if @packages && @packages.any?
             = render 'package_list', locals: { packages: @packages }
           - else
             %br
@@ -26,7 +26,7 @@
             %br
 
           %h3 2. 리포트 구입상품
-          - if @reports.any?
+          - if @reports && @reports.any?
             = render 'report_list', locals: { reports: @reports }
           - else
             %br

@@ -1,29 +1,27 @@
 class BucketsController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
-    if user_signed_in?
-      @report_items = current_user.bucket_reports.all
-      # @reports_id = @reports.collect {|report| report.id} if @reports.any?
-    else
-      redirect_to new_user_session_path
-    end
+    @report_buckets = current_user.buckets.where(bucket_item_type: "Report").all
+    @package_buckets = current_user.buckets.where(bucket_item_type: "Package").all
+
+    @report_ids = @report_buckets.collect { |bucket| bucket.bucket_item_id }
+    @package_ids = @package_buckets.collect { |bucket| bucket.bucket_item_id }
+
+    @reports = Report.find_by_id(@report_ids)
+    @packages = Package.find_by_id(@package_ids)
+    
+    # @reports_id = @reports.collect {|report| report.id} if @reports.any?
   end
   
   def create
-    if user_signed_in?
-      current_user.buckets.create(report_id: params[:report_id])
+      current_user.buckets.create(bucket_item_type: params[:bucket_item_type], bucket_item_id: params[:bucket_item_id])
       redirect_to buckets_path(current_user)
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   def destroy
-    if user_signed_in?
       @buckets = current_user.buckets
-      @buckets.where(report_id: params[:item_ids]).destroy_all
+      @buckets.where(bucket_item_id: params[:item_ids], bucket_item_type: params[:item_type]).destroy_all
       redirect_to buckets_path(current_user)
-    else
-      redirect_to new_user_session_path
-    end
   end
 end
