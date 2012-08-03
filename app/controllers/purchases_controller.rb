@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 class PurchasesController < ApplicationController
   before_filter :authenticate_user!
   
@@ -6,24 +6,22 @@ class PurchasesController < ApplicationController
   end
 
   def create
-      @reports = Report.find_all_by_id(params[:reports])
-      @packages = Package.find_all_by_id(params[:packages])
-      @purchases = Array.new
+    @reports = Report.find_all_by_id(params[:reports])
+    @packages = Package.find_all_by_id(params[:packages])
+    @purchases = Array.new
+    
+    @reports.each do |report|
+      @purchases << report.purchases.create(user_id: current_user.id)
+    end
+    
+    @packages.each do |package|
+      @purchases << package.purchases.create(user_id: current_user.id)
+    end
 
-      @reports.each do |report|
-        @purchases << report.purchases.create(user_id: current_user.id)
-      end
+    current_user.attributes = params[:user]
+    current_user.save(validate: false)
 
-      @packages.each do |package|
-        @purchases << package.purchases.create(user_id: current_user.id)
-      end
-
-      current_user.payer_name = params[:payer_name]
-      current_user.bank = params[:bank]
-      current_user.account = params[:account]
-      current_user.tel = params[:tel]
-
-      redirect_to order_complete_purchases_path(purchases: @purchases, user_id: current_user.id)
+   redirect_to order_complete_purchases_path(purchases: @purchases)
   end
 
   def new
@@ -34,10 +32,16 @@ class PurchasesController < ApplicationController
   def order
     @reports = Report.find_all_by_id(params[:reports])
     @packages = Package.find_all_by_id(params[:packages])
+
+    @sum_price = 0
+
+    @reports.each { |report| @sum_price += report.grade_price } unless @reports.empty?
+    @packages.each { |package| @sum_price += package.price } unless @packages.empty?
+
+    @user = User.find(current_user.id)
   end
 
   def order_complete
-    @user = User.find(params[:user_id])
     @purchases = Purchase.find_all_by_id(params[:purchases])
     @report_ids = Array.new
     @package_ids = Array.new
@@ -51,9 +55,11 @@ class PurchasesController < ApplicationController
     end
 
     @reports = Report.find_all_by_id(@report_ids)
-    @packages = Report.find_all_by_id(@package_ids)
+    @packages = Package.find_all_by_id(@package_ids)
 
-    @reports.each { |report| @price_sum += report.grade_price }
-    @packages.each { |report| @price_sum += package.price }
+    @price_sum = 0
+
+    @reports.each { |report| @price_sum += report.grade_price } unless @reports.empty?
+    @packages.each { |report| @price_sum += package.price } unless @packages.empty?
   end
 end
