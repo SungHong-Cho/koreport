@@ -18,7 +18,11 @@ module KoreportHelper
   end
 
   def print_compact(text)
-    text[0,140] + "..." if text.length > 140
+    if text.length > 140
+      text[0,140] + "..."
+    else
+      text[0,140]
+    end
   end
 
 end

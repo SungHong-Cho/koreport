@@ -23,6 +23,8 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
+    @package = Package.new
+    @packages = Package.all
   end
 
   def update

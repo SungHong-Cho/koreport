@@ -1,13 +1,14 @@
+= render 'shared/flash', object: flash
 .window
   .row.window-bar
     .span2.window-label
-      %span= ' 로그인 '
+      %span= ' 회원가입 '
     .span10
-      %span.trace 홈 > 로그인
+      %span.trace 홈 > 회원가입
   .content
     .row.sign-in-form
       .span7.form
-        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal"}) do |f|
+        = form_for(resource, url: user_registration_path, html: { class: "form-horizontal"}) do |f|
           .sign-in
             .row
               .span2
@@ -15,7 +16,7 @@
               .span3
                 = f.email_field :email, required: false, autofocus: true
               .span2
-                = f.button '로그인', class: 'btn btn-primary'
+                = f.button '회원가입', class: 'btn btn-primary'
             .row
               .span2
                 = f.label 'password', class: 'control-label'

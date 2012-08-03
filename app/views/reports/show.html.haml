@@ -1,9 +1,12 @@
-- if user_signed_in? && not(current_user.seller.nil?) && not(@package.nil?)
-  = form_for @package, :html => { :method => :put }, :class => "form-inline" do |f|
-    = f.label "select package that wish to add this report"
-    = collection_select(:package, :id, @packages, :id, :name)
-    = f.hidden_field(:report_id, :value => @report.id) 
-    = f.submit "Add report!", class: "btn btn-success"
+.top-control
+  .row
+    .span12
+      - if user_signed_in? && not(current_user.seller.nil?) && not(@packages.empty?)
+        = form_for @package, :url => package_path, :html => { :method => :put }, :class => "form-inline" do |f|
+          = f.label "레포트를 추가할 패키지를 선택해주세요."
+          = collection_select(:package, :id, @packages, :id, :name)
+          = f.hidden_field(:report_id, :value => @report.id) 
+          = f.submit "레포트 추가", class: "btn btn-success"
 
 .panel
   .row

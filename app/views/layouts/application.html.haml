@@ -10,6 +10,7 @@
     = render 'layouts/shim'
   %body
     = render 'layouts/header'
+    = render 'shared/flash', object: flash
     - unless yield.blank?
       .above
         /- unless current_path?(params[:controller], params[:action])

@@ -31,10 +31,6 @@ class BucketsController < ApplicationController
   end
 
   def destroy
-    logfile = File.open("/tmp/xxx", 'a')
-    logfile << "destroy? #{params[:report_item_ids]}\n"
-    logfile.close
-
     @buckets = current_user.buckets
  
     @buckets.where(bucket_item_type: 'Report', bucket_item_id: params[:report_item_ids]).destroy_all
