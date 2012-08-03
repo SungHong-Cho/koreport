@@ -10,6 +10,7 @@
     .span2
       %ul.nav.nav-pills.nav-stacked
         %li{ class: ('active' if @category.nil?)}
+          = link_to '전체검색', search_path
         %li{ class: ('active' if @category == '패키지') } 
           = link_to '패키지', search_path(search: '패키지')
         %li{ class: ('active' if @category == '공모전') } 
@@ -19,7 +20,8 @@
       - if @packages.empty? && @reports.empty?
         .out-of-result
           검색결과가 없다네~
-      - else
+  
+      - if @packages.any?
         .row
           .span10       
             .pakage-section
@@ -28,6 +30,8 @@
                   %span= "패키지 상품 #{@packages.count}건"
               .section-content
                 = render(partial: 'package', collection: @packages) || "검색된 결과가 없습니다."
+              
+      - if @reports.any?
         .row
           .span10       
             .report-section

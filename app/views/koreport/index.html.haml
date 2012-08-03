@@ -22,6 +22,7 @@
   .sign-up
     .row
       .span7
+        = render 'shared/flash'
         = image_tag 'sign_up_label.png'
         %h3.sign-up-guide 이메일과 비밀번호만 입력하시면 회원가입이 가능합니다!
         = form_for(User.new, as: :user, url: registration_path(:user), html: {class: "form-inline"}) do |f|

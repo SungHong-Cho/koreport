@@ -11,6 +11,6 @@
       %tr
         %td.title= link_to "#{package.name}", package_path(package)
         %td.count= package.reports.count
-        %td.price= package.price
-        %td.dc package.discount
-        %td.sum package.sum
+        %td.price= package.original_price
+        %td.dc= package.discount
+        %td.sum= package.price

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803043243) do
+ActiveRecord::Schema.define(:version => 20120803125844) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id", :null => false
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20120803043243) do
 
   create_table "buckets", :force => true do |t|
     t.integer  "user_id",                                :null => false
-    t.integer  "report_id",                              :null => false
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "bucket_item_id"

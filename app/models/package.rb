@@ -30,13 +30,13 @@ class Package < ActiveRecord::Base
     when 14900
       19000
 
-    when 9900
+    else
       11400
     end
   end
 
   def discount
-    self.price - original_price
+    self.price - self.original_price
   end
 
   def title=(name)

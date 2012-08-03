@@ -9,16 +9,14 @@ class BucketsController < ApplicationController
     @report_ids = @report_buckets.collect { |bucket| bucket.bucket_item_id }
     @package_ids = @package_buckets.collect { |bucket| bucket.bucket_item_id }
 
-    @reports = Report.find_by_id(@report_ids)
-    @packages = Package.find_by_id(@package_ids)
+    @reports = Report.find_all_by_id(@report_ids)
+    @packages = Package.find_all_by_id(@package_ids)
     
     # @reports_id = @reports.collect {|report| report.id} if @reports.any?
   end
   
   def create
     @bucket = current_user.buckets.build(bucket_item_type: params[:bucket_item_type], bucket_item_id: params[:bucket_item_id])
-
-    logger.info(params)
 
     if @bucket.save
       redirect_to buckets_path(current_user)
@@ -30,7 +28,7 @@ class BucketsController < ApplicationController
 
   def destroy
       @buckets = current_user.buckets
-      @buckets.where(bucket_item_id: params[:item_ids], bucket_item_type: params[:item_type]).destroy_all
+      @buckets.where(bucket_item_id: params[:item_ids], bucket_item_type: params[:bucket_item_type]).destroy_all
       redirect_to buckets_path(current_user)
   end
 end

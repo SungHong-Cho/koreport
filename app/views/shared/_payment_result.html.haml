@@ -6,6 +6,6 @@
       %th{ width: '288px' }
   %tbody
     %tr
-      %td.sum sum
-      %td.dc dc
-      %td.total total
+      %td.sum= "#{@total_original_price} 원"
+      %td.dc= "#{@total_discount} 원"
+      %td.total= "#{@total_price} 원"
