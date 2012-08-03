@@ -3,8 +3,28 @@
     .row
       .span12
         = image_tag('bucket_label.png', alt: '장바구니')
-        
-    = form_tag buckets_path(current_user), method: 'delete' do
+    
+    = form_tag buckets_path(current_user, item_type: "Package"), method: 'delete' do
+      %table.table.table-stripped.list
+        %thead
+          %th 제목
+          %th 자소서 수
+          %th 상품가격
+          %th 할인가격
+          %th 합계
+          %th 선택
+        %tbody
+          - @packages &&  @packages.each do |item|
+            %tr
+              %td= item.name
+              %td= "#{item.reports.count} 개"
+              %td= item.original_price
+              %td= item.discount
+              %td= item.price
+              %td= check_box_tag "item_ids[]", item.id
+      = submit_tag "선택항목 지우기", class: "btn btn-info"
+
+    = form_tag buckets_path(current_user, item_type: "Report"), method: 'delete' do
       %table.table.table-stripped.list
         %thead
           %th 제목
@@ -14,7 +34,7 @@
           %th 합계
           %th 선택
         %tbody
-          - @report_items.each do |item|
+          - @reports && @reports.each do |item|
             %tr
               %td= item.title
               %td= "#{item.page} Page"
@@ -22,6 +42,7 @@
               %td item.discount
               %td item.sum
               %td= check_box_tag "item_ids[]", item.id
-      = submit_tag "delete seleted", class: "btn btn-info"
-    = button_to "구매하기", order_purchases_path(reports: @report_items, packages: @packages), class: "btn"
-  = button_to "select all", class: "btn"
+      = submit_tag "선택항목 지우기", class: "btn btn-info"
+    .row
+      .span12
+        = button_to "구매하기", order_purchases_path(reports: @reports, packages: @packages), class: "btn btn-large"

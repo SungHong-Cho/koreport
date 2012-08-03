@@ -1,0 +1,6 @@
+class AddPolymorphicToBucket < ActiveRecord::Migration
+  def change
+    add_column :buckets, :product_id, :integer
+    add_column :buckets, :product_type, :string, default: 'Report', null: false
+  end
+end
