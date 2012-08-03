@@ -1,10 +1,3 @@
-.top-control
-  .row
-    .span3
-      = link_to search_path, class: "btn btn-large" do
-        %i.icon-chevron-left.icon-white.icon-large
-        %span 뒤로
- 
 - if user_signed_in? && not(current_user.seller.nil?) && not(@package.nil?)
   = form_for @package, :html => { :method => :put }, :class => "form-inline" do |f|
     = f.label "select package that wish to add this report"

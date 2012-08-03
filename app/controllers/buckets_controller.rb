@@ -12,6 +12,10 @@ class BucketsController < ApplicationController
     @reports = Report.find_all_by_id(@report_ids)
     @packages = Package.find_all_by_id(@package_ids)
     
+    logfile = File.open("/tmp/xxx", 'a')
+    logfile << "index? #{params[:report_item_ids]}\n"
+    logfile.close
+
     # @reports_id = @reports.collect {|report| report.id} if @reports.any?
   end
   
@@ -27,17 +31,15 @@ class BucketsController < ApplicationController
   end
 
   def destroy
+    logfile = File.open("/tmp/xxx", 'a')
+    logfile << "destroy? #{params[:report_item_ids]}\n"
+    logfile.close
+
     @buckets = current_user.buckets
-    puts("##################################################################")
-    puts("##################################################################")
-    puts("##################################################################")
-    puts("##################################################################")
-    puts("##################################################################")
-    logger.debug("########################################################")
-    logger.warning("destroy? #{params[:report_item_ids]} + #{params[:package_item_ids]}")
-    logger.info("##################################################################")
-    @buckets.where(bucket_item_id: params[:report_item_ids], bucket_item_type: 'Report').destroy_all
-    @buckets.where(bucket_item_id: params[:package_item_ids], bucket_item_type: 'Package').destroy_all
+ 
+    @buckets.where(bucket_item_type: 'Report', bucket_item_id: params[:report_item_ids]).destroy_all
+    @buckets.where(bucket_item_type: 'Package', bucket_item_id: params[:package_item_ids]).destroy_all
+    
     redirect_to buckets_path(current_user)
   end
 end

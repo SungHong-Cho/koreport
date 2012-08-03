@@ -1,6 +1,9 @@
 $ ->
   $('#delete_button').click (ev) ->
-    alert '준비중'
-    $('#form_bucket').attr('method', 'delete')
+    $('#form_bucket div').append('<input name="_method" type="hidden" value="delete">')
 
+$ ->
+  $('#buy_button').click (ev) ->
+    $('#form_bucket').attr('action', '/purchases/order')
+    $('#form_bucket').submit
         
