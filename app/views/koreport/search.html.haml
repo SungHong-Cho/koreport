@@ -31,6 +31,6 @@
             .report-section
               .section-title
                 .title-label
-                  %span= "리포트 #{@reports.count}건"
+                  %span= "자기소개서 #{@reports.count}건"
               .section-content
                 = render(partial: 'report', collection: @reports) || "검색된 결과가 없습니다."

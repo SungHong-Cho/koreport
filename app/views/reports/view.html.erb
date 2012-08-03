@@ -1,36 +1,35 @@
 <html>
   <head>
 	<style type="text/css">
-		#wapper{text-align:left; width:1200px; margin:0 auto;}
+		#wapper{text-align:center; width:1000px; margin:0 auto;}
 		nav{
-			width:7%;
+			width:10%;
 			float:left;
 		}
 		section{
-			width:86%;
+			width:90%;
 			float:left;	
-		}
-		aside{
-			width:7%;
-			float:right;
 		}
 	</style>
   </head>
   <body>
   <div id="wapper">
-        <nav>   
-	<div id="galleryThumbImg" style="width:80px;overflow:hidden">
+        <nav style="height:1140px;overflow-y:auto;">   
+	<p>print it</p>
+	<div id="galleryThumbImg" style="width:80px;">
+             <% @counter = 0 %>
              <% @images.each do |doc_img| %>
+	     <% @counter = @counter + 1%>
+	     <%=@counter %>쪽
              <%= link_to image_tag(doc_img.url(:thumb)), doc_img.url%>
+		<br><br>		
              <% end %>
+		<br>
         </div>
 	</nav>
         <section>  
-	<div id="myDiv" style="width:1024px; height:1448px; overflow:hidden; border:solid 1px #a6a6a6;"></div>
+	<div id="myDiv" style="width:808px; height:1143px; overflow:hidden; border:solid 1px #a6a6a6;"></div>
 	</section>
-	<aside>
-     	 <p>print it</p>
-	</aside>
   </div>
   </body>
 </html>
