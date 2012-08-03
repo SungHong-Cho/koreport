@@ -12,7 +12,7 @@ $(document).ready(function() {
 		'intNavPos' : 'R',
 		'intNavAutoHide' : true,
 		"fitToViewportShortSide" : false,
-		"contentSizeOver100" : false
+		"contentSizeOver100" : true
 	};
 	$("#myDiv").lhpMegaImgViewer(thumbGalleryStt);
 	$('#galleryThumbImg a').each(function(index){
@@ -33,4 +33,5 @@ $(document).ready(function() {
 
 function printElem(options) {
 	$("#printArea").printElement(options);
+	history.back();
 }
