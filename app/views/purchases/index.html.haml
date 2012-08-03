@@ -1,2 +1,26 @@
-%h1 Purchases#index
-%p Find me in app/views/purchases/index.html.haml
+%table.table.table-stripped.report-list
+  %thead
+    %th{ width: '100px' } 날짜
+    %th{ width: '120px' } 이메일
+    %th{ width: '50px' } 이름
+    %th{ width: '120px' } 은행
+    %th{ width: '200px' } 계좌
+    %th{ width: '200px' } 제목
+    %th{ width: '100px' } 가격
+    %th{ width: '100px' } 승인
+  %tbody
+    - @purchases.each do |purchase|
+      - purchase.item_type == "Report" ? @report = Report.find(purchase.item_id) : @package = Package.find(purchase.item_id)
+      %tr
+        %td= (purchase.created_at).strftime("%y년 %m월 %d일")
+        %td= purchase.user.email
+        %td= purchase.user.payer_name
+        %td= purchase.user.bank
+        %td= purchase.user.account
+        %td= purchase.item_type == "Report" ? @report.title : @package.name
+        %td= purchase.item_type == "Report" ? @report.grade_price : @package.price
+        %td
+          - unless purchase.isPaid
+            = link_to '승인', purchase_path(purchase), method: 'put', class: "btn"
+          - else
+            승인 완료

@@ -27,23 +27,17 @@
                     - if current_user.seller.name == "koreport"
                       %li
                         = link_to "패키지 관리", packages_path
+                      %li
+                        = link_to "결제 관리", purchases_path
                 %li
                   = link_to user_path(current_user) do
                     %i.icon-user.icon-large
-                    My page
-                %li
-                  = link_to '' do
-                    %i.icon-lock.icon-large
-                    Security Setting
-                %li.divider
-                %li
-                  = link_to '' do
-                    %i.icon-money.icon-large
-                    Account Setting
+                    마이 페이지
+                
                 %li
                   = link_to destroy_user_session_path, :method => 'delete' do
                     %i.icon-off.icon-large
-                    Sign out
+                    로그 아웃
         - else
           %ul.nav
             %li= link_to "계정이 있으시다면? 로그 인", new_user_session_path

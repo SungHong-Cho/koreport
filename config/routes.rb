@@ -22,7 +22,7 @@ Koreport::Application.routes.draw do
   resources :reports do
     get 'view', 'print', :on => :member
   end
-  resources :purchases, :only => [:index, :create, :new] do
+  resources :purchases, :only => [:index, :create, :new, :update] do
     collection do
       post 'order'
       get 'order_complete'

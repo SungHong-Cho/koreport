@@ -3,6 +3,12 @@ class PurchasesController < ApplicationController
   before_filter :authenticate_user!
   
   def index
+    unless current_user.seller && current_user.seller.name == "koreport"
+      flash[:error] = "관리자가 아닙니다."
+      redirect_to root_path
+    else
+      @purchases = Purchase.all
+    end
   end
 
   def create
@@ -62,4 +68,16 @@ class PurchasesController < ApplicationController
     @reports.each { |report| @price_sum += report.grade_price } unless @reports.empty?
     @packages.each { |report| @price_sum += package.price } unless @packages.empty?
   end
+
+  def update
+    unless current_user.seller && current_user.seller.name == "koreport"
+      redirect_to new_user_session_path
+    else
+      purchase = Purchase.find(params[:id])
+      purchase.isPaid = true
+
+      flash[:error] = "사용자 결제 승인 오류." unless purchase.save
+    end
+    redirect_to purchases_path
+  end    
 end

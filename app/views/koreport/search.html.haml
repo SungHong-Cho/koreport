@@ -9,11 +9,13 @@
   .row.content-result
     .span2
       %ul.nav.nav-pills.nav-stacked
-        %li.active
-          = link_to '패키지', '#'
-        %li
-          = link_to '공모전', '#'
+        %li{ class: ('active' if @category.nil?)}
+        %li{ class: ('active' if @category == '패키지') } 
+          = link_to '패키지', search_path(search: '패키지')
+        %li{ class: ('active' if @category == '공모전') } 
+          = link_to '공모전', search_path(search: '공모전')
     .span10
+      = image_tag("#{@category}.png", alt: @category) if @product.nil?
       - if @packages.empty? && @reports.empty?
         .out-of-result
           검색결과가 없다네~

@@ -1,19 +1,19 @@
 %table.table.table-stripped.report-list
   %thead
-    %th{ width: '100px' } 구입일
-    %th{ width: '400px' } 제목
-    %th{ width: '100px' } 페이지 수
-    %th{ width: '100px' } 가격
+    %th{ width: '130px' } 구입일
+    %th{ width: '430px' } 제목
+    %th{ width: '70px' } 페이지 수
+    %th{ width: '70px' } 가격
     %th{ width: '100px' } 미리보기
     %th{ width: '100px' } 뷰어로 보기
   %tbody
     - @reports.each do |report|
       %tr
-        %td= report.purchase(current_user).created_at
+        %td= (report.purchase(current_user).created_at).strftime("%y년 %m월 %d일")
         %td= report.title
         %td= "#{report.page} Page"
-        %td= report.grade_price
+        %td= "#{report.grade_price} 원"
         %td
-          = link_to '미리보기', '#', class: "btn"
+          = link_to '프린트', print_report_path(report), class: "btn"
         %td
-          = link_to '뷰어로 보기', view_report_path(report), class: "btn btn-info"
+          = link_to '보기', view_report_path(report), class: "btn btn-info"

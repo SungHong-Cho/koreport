@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
 
   def buy_this?(report)
     @purchases = self.purchases.where(item_type: "Report", item_id: report.id)
-    @purchase = @purchase.first if @purchases
+    @purchase = @purchases.first if @purchases # 배열이면 에러나게 고쳐야 함.
     @purchase.isPaid
   end
 end

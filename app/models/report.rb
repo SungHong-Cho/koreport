@@ -49,5 +49,4 @@ class Report < ActiveRecord::Base
     end
     return "package"
   end
-    
 end

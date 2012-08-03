@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class ReportsController < ApplicationController
   def index
   end
@@ -32,18 +33,34 @@ class ReportsController < ApplicationController
 
   def view
     @report = Report.find(params[:id])
-    if user_signed_in? && current_user.buy_this?(@report)
+
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+
+    if current_user.buy_this?(@report)
       @img_list = @report.documents.collect { |document| document.doc_img }
       @images = @img_list     
       gon.firstImage = @images.first.url
     else
-      redirect_to new_session_path
+      flash[:error] = "결제 승인이 나지 않은 항목입니다."
+      redirect_to user_path(current_user)
     end
   end
 
   def print
-     @report = Report.find(params[:id])
-     @img_list = @report.documents.collect { |document| document.doc_img }
-     @images = @img_list;
+    @report = Report.find(params[:id])
+
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
+
+    if current_user.buy_this?(@report)
+      @img_list = @report.documents.collect { |document| document.doc_img }
+      @images = @img_list     
+    else
+      flash[:error] = "결제 승인이 나지 않은 항목입니다."
+      redirect_to user_path(current_user)
+    end
   end
 end

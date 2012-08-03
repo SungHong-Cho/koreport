@@ -38,4 +38,12 @@ class Package < ActiveRecord::Base
   def discount
     self.price - original_price
   end
+
+  def title=(name)
+    self.name = name
+  end
+
+  def title
+    self.name
+  end
 end
