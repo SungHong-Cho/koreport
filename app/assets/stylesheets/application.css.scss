@@ -21,7 +21,8 @@ $btnInfoBackgroundHighlight: #564185;
 
 // header.
 .navbar {
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F8', endColorstr='#F8F8F8', GradientType=0)
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F8', endColorstr='#F8F8F8', GradientType=0);
+    filter:progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
 .navbar .brand {
     padding: 0px 0px 0px 0px;
