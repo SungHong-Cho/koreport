@@ -20,6 +20,9 @@ $btnInfoBackgroundHighlight: #564185;
 @import 'font-awesome';
 
 // header.
+.navbar {
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F8', endColorstr='#F8F8F8', GradientType=0)
+}
 .navbar .brand {
     padding: 0px 0px 0px 0px;
 }

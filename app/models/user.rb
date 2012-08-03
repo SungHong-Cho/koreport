@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :payer_name, :account, :bank, :tel
   # attr_accessible :title, :body
 
   has_one :seller
@@ -22,4 +22,10 @@ class User < ActiveRecord::Base
 
   validates :email, :password, :presence => true
   validates :password, :confirmation => true
+
+  def buy_this?(report)
+    @purchases = self.purchases.where(item_type: "Report", item_id: report.id)
+    @purchase = @purchase.first if @purchases
+    @purchase.isPaid
+  end
 end

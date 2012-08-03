@@ -22,10 +22,6 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
-    if user_signed_in? && not(current_user.seller.nil?)
-      @packages = Package.all
-      @package = @packages.first
-    end
   end
 
   def update
@@ -35,11 +31,14 @@ class ReportsController < ApplicationController
   end
 
   def view
-     @report = Report.find(params[:id])
-     @img_list = @report.documents.collect { |document| document.doc_img }
-     @images = @img_list;     
-     gon.firstImage = @images.first.url;
-
+    @report = Report.find(params[:id])
+    if user_signed_in? && current_user.buy_this?(@report)
+      @img_list = @report.documents.collect { |document| document.doc_img }
+      @images = @img_list     
+      gon.firstImage = @images.first.url
+    else
+      redirect_to new_session_path
+    end
   end
 
   def print

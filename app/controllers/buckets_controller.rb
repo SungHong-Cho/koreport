@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 class BucketsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @report_buckets = current_user.buckets.where(bucket_item_type: "Report").all
-    @package_buckets = current_user.buckets.where(bucket_item_type: "Package").all
+    @report_buckets = current_user.buckets.where(bucket_item_type: "Report")
+    @package_buckets = current_user.buckets.where(bucket_item_type: "Package")
 
     @report_ids = @report_buckets.collect { |bucket| bucket.bucket_item_id }
     @package_ids = @package_buckets.collect { |bucket| bucket.bucket_item_id }
@@ -15,8 +16,16 @@ class BucketsController < ApplicationController
   end
   
   def create
-      current_user.buckets.create(bucket_item_type: params[:bucket_item_type], bucket_item_id: params[:bucket_item_id])
+    @bucket = current_user.buckets.build(bucket_item_type: params[:bucket_item_type], bucket_item_id: params[:bucket_item_id])
+
+    logger.info(params)
+
+    if @bucket.save
       redirect_to buckets_path(current_user)
+    else
+      flash[:error] = "장바구니를 이용할 수 없습니다. 코리포트에 문의하세요."
+      redirect_to root_path
+    end
   end
 
   def destroy

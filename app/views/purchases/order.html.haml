@@ -23,48 +23,41 @@
 
       %h3 2. 결제금액
       = render 'shared/payment_result'
-      
-      %table.payment
-        %thead
-          %tr
-            %th
-              %h3 3. 결제정보
-            %th
-              %h3 4. 결제하기
-        
-          %span dd
-          %tbody
-            %tr
-              %td
-                = form_tag purchases_path(reports: @reports, packages: @packages, user_id:current_user.id), class: "form-horizontal" do
-                  %p * 지금은 계좌이체를 통한 구매만 가능합니다.
-                  %p 결제금액을
-                  %h4 우리은행 (주) 코리포트 1006-601-376616
-                  %p 으로 입금하시면 즉시 서비스를 이용하실 수 있습니다.
-                  .account
-                    %p 입금자 확인을 위해 정확한 정보를 입력해주세요.
-                    %fieldset
-                      .control-group
-                        = label_tag '입금자', nil, class: "control-label"
-                        .controls
-                          = text_field_tag :payer_name, value: current_user.payer_name
 
-                      .control-group
-                        = label_tag '은행', nil, class: "control-label"
-                        .controls
-                          = text_field_tag :bank, value: current_user.bank
+      .row-fluid
+        = form_for :user, url: purchases_path(reports: @reports, packages: @packages), html: { class: "form-horizontal" } do |f|
+          = render 'layouts/error_messages', locals: { user: @user }
+          .span6
+            %h3 3. 결제정보
+            %p * 지금은 계좌이체를 통한 구매만 가능합니다.
+            %p 결제금액을
+            %h4 우리은행 (주) 코리포트 1006-601-376616
+            %p 으로 입금하시면 즉시 서비스를 이용하실 수 있습니다.
+            .account
+              %p 입금자 확인을 위해 정확한 정보를 입력해주세요.
+              %fieldset
+                .control-group
+                  = f.label '입금자', class: "control-label"
+                  .controls
+                    = f.text_field :payer_name
 
-                      .control-group
-                        = label_tag '계좌번호', nil, class: "control-label"
-                        .controls
-                          = text_field_tag :account, value: current_user.bank
+                .control-group
+                  = f.label '은행', class: "control-label"
+                  .controls
+                    = f.text_field :bank
+
+                .control-group
+                  = f.label '계좌번호', class: "control-label"
+                  .controls
+                    = f.text_field :account
                           
-                      .control-group
-                        = label_tag '전화번호', nil, class: "control-label"
-                        .controls
-                          = text_field_tag :tel, value: current_user.tel
-                      = submit_tag "결제하기", class: "btn btn-primary"
-              %td
-                %h3 최종결제금액
-                %h2 2500원
+                .control-group
+                  = f.label '전화번호', class: "control-label"
+                  .controls
+                    = f.text_field :tel
 
+          .span6
+            %h3 4. 결제하기
+            %h4 최종결제금액
+            %span.label.label-large= "#{@sum_price} 원"
+            = f.submit "결제하기", class: "btn btn-large btn-primary"
