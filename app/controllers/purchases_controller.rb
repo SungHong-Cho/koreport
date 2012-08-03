@@ -27,7 +27,13 @@ class PurchasesController < ApplicationController
     current_user.attributes = params[:user]
     current_user.save(validate: false)
 
-   redirect_to order_complete_purchases_path(purchases: @purchases)
+    
+
+    # bucket destroy.
+    current_user.buckets.where(bucket_item_type: "Report", bucket_item_id: params[:reports]).destroy_all
+    current_user.buckets.where(bucket_item_type: "Package", bucket_item_id: params[:packages]).destroy_all
+
+    redirect_to order_complete_purchases_path(purchases: @purchases)
   end
 
   def new
@@ -36,8 +42,8 @@ class PurchasesController < ApplicationController
   end
 
   def order
-    @reports = Report.find_all_by_id(params[:reports])
-    @packages = Package.find_all_by_id(params[:packages])
+    @reports = Report.find_all_by_id(params[:report_item_ids])
+    @packages = Package.find_all_by_id(params[:package_item_ids])
 
     @total_original_price = 0
     @total_discount = 0

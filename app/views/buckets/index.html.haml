@@ -3,11 +3,10 @@
     .row
       .span12
         = image_tag('bucket_label.png', alt: '장바구니')
-
-    - if @packages.empty?
-      %h3 * 장바구니에 담겨진 패키지 상품이 없습니다.
-    - else
-      = form_tag buckets_path(current_user, bucket_item_type: "Package"), method: 'delete' do
+    = form_tag buckets_path(current_user) do
+      - if @packages.empty?
+        %h3 * 장바구니에 담겨진 패키지 상품이 없습니다.
+      - else
         %table.table.table-stripped.list
           %thead
             %th 제목
@@ -24,12 +23,10 @@
                 %td= item.original_price
                 %td= item.discount
                 %td= item.price
-                %td= check_box_tag "item_ids[]", item.id
-        .row{ style: "text-align: right"}= submit_tag "선택항목 지우기", class: "btn btn-info"
-    - if @reports.empty?
-      %h3 * 장바구니에 담겨진 자기소개서 상품이 없습니다.
-    - else
-      = form_tag buckets_path(current_user, bucket_item_type: "Report"), method: 'delete' do
+                %td= check_box_tag "package_item_ids[]", item.id
+      - if @reports.empty?
+        %h3 * 장바구니에 담겨진 자기소개서 상품이 없습니다.
+      - else
         %table.table.table-stripped.list
           %thead
             %th 제목
@@ -42,8 +39,8 @@
                 %td= item.title
                 %td= "#{item.page} Page"
                 %td.sum= item.grade_price
-                %td= check_box_tag "item_ids[]", item.id
-        .row{ style: "text-align: right"}= submit_tag "선택항목 지우기", class: "btn btn-info"
-    .row
-      .span12
-        = button_to "구매하기", order_purchases_path(reports: @reports, packages: @packages), class: "btn btn-large"
+                %td= check_box_tag "report_item_ids[]", item.id
+      .row{ style: "text-align: right"}= submit_tag "선택항목 지우기", id: 'delete_button', class: "btn btn-info"
+      .row
+        .span12{ style: "text-align: center" }
+          = submit_tag "구매하기", id: 'buy_button', class: "btn btn-large"

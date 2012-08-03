@@ -27,8 +27,9 @@ class BucketsController < ApplicationController
   end
 
   def destroy
-      @buckets = current_user.buckets
-      @buckets.where(bucket_item_id: params[:item_ids], bucket_item_type: params[:bucket_item_type]).destroy_all
+    @buckets = current_user.buckets
+    @buckets.where(bucket_item_id: params[:report_item_ids], bucket_item_type: 'Report').destroy_all
+    @buckets.where(bucket_item_id: params[:package_item_ids], bucket_item_type: 'Package').destroy_all
       redirect_to buckets_path(current_user)
   end
 end
