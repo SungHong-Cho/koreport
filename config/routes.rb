@@ -6,6 +6,7 @@ Koreport::Application.routes.draw do
   match 'search' => 'koreport#search', :as => :search
   match 'personal' => 'koreport#personal', :as => :personal
   match 'legal' => 'koreport#legal', :as => :legal
+  match 'about' => 'koreport#about', :as => :about
 
   devise_for :users, controllers: { registrations: "users/registrations" }
 
