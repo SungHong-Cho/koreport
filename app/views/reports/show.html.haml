@@ -42,7 +42,11 @@
         - else
           = link_to buckets_path(current_user, bucket_item_type: "Report", bucket_item_id: @report.id), class: "btn btn-large", method: 'post' do
             %span 카트에 담기
-
+      - else
+        = link_to new_user_session_path, class: "btn btn-large btn-info" do
+          %span 구매하기
+        = link_to new_user_session_path, class: "btn btn-large" do
+          %span 카트에 담기
 .contents
   .row-fluid.contents-title
     .span3
