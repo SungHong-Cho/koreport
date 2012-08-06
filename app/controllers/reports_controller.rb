@@ -75,7 +75,7 @@ class ReportsController < ApplicationController
       redirect_to new_user_session_path
     end
 
-    if current_user.freepass || current_user.buy_this?(@report)
+    if current_user.freepass || current_user.pay_this?(@report)
       @img_list = @report.documents.collect { |document| document.doc_img }
       @images = @img_list     
     else
