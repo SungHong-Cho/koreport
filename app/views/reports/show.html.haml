@@ -40,7 +40,7 @@
       - if @in_cart
         %span.btn.btn-large.diabled 장바구니 안
         
-      - elsif not(@buy_this)
+      - elsif user_signed_in? && not(current_user.buy_this?(@report))
         = link_to buckets_path(current_user, bucket_item_type: "Report", bucket_item_id: @report.id), class: "btn btn-large", method: 'post' do
           %span 카트에 담기
 
