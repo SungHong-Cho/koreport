@@ -34,6 +34,10 @@ group :assets do
   gem 'font-awesome-sass-rails'
 end
 
+gem 'execjs'
+
+gem 'therubyracer'
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

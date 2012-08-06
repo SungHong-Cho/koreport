@@ -12,28 +12,34 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @reports = Report.find_all_by_id(params[:reports])
-    @packages = Package.find_all_by_id(params[:packages])
-    @purchases = Array.new
+    # validation user account information
+    if params[:user][:payer_name].blank? || params[:user][:bank].blank? || params[:user][:account].blank? || params[:user][:tel].blank?
+      flash[:error] = "입금자명, 은행명, 계좌번호, 전화번호를 정확히 입력해 주십시오."
+      redirect_to order_purchases_path(report_item_ids: params[:reports], package_item_ids: params[:packages])
+
+    else
     
-    @reports.each do |report|
-      @purchases << report.purchases.create(user_id: current_user.id)
+      @reports = Report.find_all_by_id(params[:reports])
+      @packages = Package.find_all_by_id(params[:packages])
+      @purchases = Array.new
+    
+      @reports.each do |report|
+        @purchases << report.purchases.create(user_id: current_user.id)
+      end
+    
+      @packages.each do |package|
+        @purchases << package.purchases.create(user_id: current_user.id)
+      end
+
+      current_user.attributes = params[:user]
+      current_user.save(validate: false)
+
+      # bucket destroy.
+      current_user.buckets.where(bucket_item_type: "Report", bucket_item_id: params[:reports]).destroy_all
+      current_user.buckets.where(bucket_item_type: "Package", bucket_item_id: params[:packages]).destroy_all
+      
+      redirect_to order_complete_purchases_path(purchases: @purchases)
     end
-    
-    @packages.each do |package|
-      @purchases << package.purchases.create(user_id: current_user.id)
-    end
-
-    current_user.attributes = params[:user]
-    current_user.save(validate: false)
-
-    
-
-    # bucket destroy.
-    current_user.buckets.where(bucket_item_type: "Report", bucket_item_id: params[:reports]).destroy_all
-    current_user.buckets.where(bucket_item_type: "Package", bucket_item_id: params[:packages]).destroy_all
-
-    redirect_to order_complete_purchases_path(purchases: @purchases)
   end
 
   def new

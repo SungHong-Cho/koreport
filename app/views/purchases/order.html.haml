@@ -27,7 +27,7 @@
       %h3 3. 결제정보
       .row-fluid
         = form_for :user, url: purchases_path(reports: @reports, packages: @packages), html: { class: "form-horizontal" } do |f|
-          = render 'layouts/error_messages', locals: { user: @user }
+          = render 'layouts/error_messages'
           .span6
             %p * 지금은 계좌이체를 통한 구매만 가능합니다.
             %p 결제금액을

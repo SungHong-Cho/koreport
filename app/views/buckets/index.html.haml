@@ -3,7 +3,7 @@
     .row
       .span12
         = image_tag('bucket_label.png', alt: '장바구니')
-    = form_tag buckets_path(current_user), id: 'form_bucket' do
+    = form_tag buckets_path(current_user), id: 'form_bucket', method: :get do
       - if @packages.empty?
         %h3 * 장바구니에 담겨진 패키지 상품이 없습니다.
       - else

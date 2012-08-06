@@ -34,7 +34,7 @@
         = link_to view_report_path(@report), class: "btn btn-large btn-info" do
           %span 뷰어로 보기
       - else
-        = link_to order_purchases_path(report_item_ids: @report.id), class: "btn btn-large btn-info", method: 'post' do
+        = link_to order_purchases_path(report_item_ids: @report.id), class: "btn btn-large btn-info" do
           %span 구매하기
     
       - if @in_cart
