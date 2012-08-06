@@ -23,16 +23,14 @@
             .span12
               %table.table.table-stripped.report-list
                 %thead
-                  %th{ width: '130px' } 구입일
                   %th{ width: '430px' } 제목
                   %th{ width: '70px' } 페이지 수
                   %th{ width: '70px' } 가격
                   %th{ width: '100px' } 미리보기
                   %th{ width: '100px' } 뷰어로 보기
                 %tbody
-                  - @reports.each do |report|
+                  - package.reports.all.each do |report|
                     %tr
-                      %td= (report.purchase(current_user).created_at).strftime("%y년 %m월 %d일")
                       %td= report.title
                       %td= "#{report.page} Page"
                       %td= "#{report.grade_price} 원"

@@ -27,9 +27,10 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
-    @reports = Array.new << @report
-    @package = Package.new
     @packages = Package.all
+    @package = Package.new
+    @buy_this = user_signed_in? && current_user.buy_this?(@report)
+    @in_cart = user_signed_in? && current_user.in_cart?(@report)
   end
 
   def update
@@ -57,7 +58,7 @@ class ReportsController < ApplicationController
       redirect_to new_user_session_path
     end
 
-    if current_user.freepass || current_user.buy_this?(@report)
+    if current_user.freepass || current_user.pay_this?(@report)
       @img_list = @report.documents.collect { |document| document.doc_img }
       @images = @img_list     
       gon.firstImage = @images.first.url

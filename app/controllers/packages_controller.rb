@@ -26,6 +26,9 @@ class PackagesController < ApplicationController
   def show
     @package = Package.find(params[:id])
     @packages = Array.new << @package
+    @buy_this = user_signed_in? && current_user.buy_this?(@package)
+    @in_cart = user_signed_in? && current_user.in_cart?(@package)
+
   end
 
   def update

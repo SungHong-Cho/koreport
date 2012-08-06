@@ -26,20 +26,19 @@
       %span= "color-tap"
     .span10.buttons
       %span.price= "#{@package.price} 원"
-      - if user_signed_in?
-        - if current_user.buy_this?(@package)
-          %span 구매하신 상품입니다.
-        - else
-          %span.btn.btn-large.btn-info.disabled 준비중입니다
-          /= link_to order_purchases_path(package_item_ids: @package.id), class: "btn btn-large btn-info", method: 'post' do
-          /%span 구매하기
-
-        - if current_user.in_cart?(@package)
-          %span 장바구니 안에 있음.
-        - else
-          %span.btn.btn-large.disabled 준비중입니다
-          /= link_to buckets_path(current_user, bucket_item_type: "Package", bucket_item_id: @package.id), class: "btn btn-large", method: 'post' do
-          /%span 카트에 담기
+      - if @buy_this
+        = link_to view_report_path(@package), class: "btn btn-large btn-info" do
+          %span 뷰어로 보기
+      - else
+        = link_to order_purchases_path(package_item_ids: @package.id), class: "btn btn-large btn-info", method: 'post' do
+          %span 구매하기
+    
+      - if @in_cart
+        %span.btn.diabled 장바구니 안
+        
+      - elsif not(@package)
+        = link_to buckets_path(current_user, bucket_item_type: "Package", bucket_item_id: @package.id), class: "btn btn-large", method: 'post' do
+          %span 카트에 담기
 
 .contents
   .row-fluid.contents-title

@@ -8,4 +8,8 @@ class Purchase < ActiveRecord::Base
   belongs_to :package
 
   belongs_to :item, :polymorphic => true
+
+  def isPaid?
+    isPaid
+  end
 end

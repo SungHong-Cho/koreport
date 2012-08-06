@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_filter :authenticate_user!
+  
   def index
     
   end
 
   def show
-    if user_signed_in? && current_user.purchases.any?
+    if current_user.purchases.any?
       @purchases = current_user.purchases
       @report_ids = Array.new
       @package_ids = Array.new

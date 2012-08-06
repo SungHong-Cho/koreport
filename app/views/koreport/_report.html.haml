@@ -9,12 +9,9 @@
       .info
         %span= "#{report.grade_price} 원"
         = link_to '자세히 보기', report_path(report), class:'btn btn-info'
-        - if user_signed_in?
-          - unless current_user.in_cart?(report)
-            = link_to '카트에 담기', buckets_path(current_user, bucket_item_type: 'Report', bucket_item_id: report.id), method: 'post', class: 'btn'
-          - else
-            %span 카트에 담김
-        - else
-          = link_to '카트에 담기', new_user_session_path, method: 'post', class: 'btn'
-
-    
+        - if @in_cart
+          %span.btn.diabled 장바구니 안
+        
+        - elsif not(@buy_this)
+          = link_to buckets_path(current_user, bucket_item_type: "Report", bucket_item_id: report.id), class: "btn", method: 'post' do
+            %span 카트에 담기
