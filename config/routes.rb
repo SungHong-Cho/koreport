@@ -12,7 +12,9 @@ Koreport::Application.routes.draw do
 
   resources :users, :only => [:index, :show] do
     member do
-      resources :buckets, :only => [:index, :create, :destroy]
+      resources :buckets, :only => [:index, :create] do
+        delete :destroy, :on => :collection
+      end
     end
     collection do
       get 'sign_up_complete'

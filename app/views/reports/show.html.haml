@@ -38,7 +38,7 @@
           %span 구매하기
     
       - if @in_cart
-        %span.btn.diabled 장바구니 안
+        %span.btn.btn-large.diabled 장바구니 안
         
       - elsif not(@buy_this)
         = link_to buckets_path(current_user, bucket_item_type: "Report", bucket_item_id: @report.id), class: "btn btn-large", method: 'post' do

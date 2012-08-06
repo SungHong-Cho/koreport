@@ -42,6 +42,9 @@ class PurchasesController < ApplicationController
   end
 
   def order
+    if(params[:report_item_ids].nil? && params[:package_item_ids].nil?)
+      redirect_to buckets_path(current_user)
+    end
     @reports = Report.find_all_by_id(params[:report_item_ids])
     @packages = Package.find_all_by_id(params[:package_item_ids])
 

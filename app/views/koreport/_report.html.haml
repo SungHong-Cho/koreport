@@ -9,9 +9,9 @@
       .info
         %span= "#{report.grade_price} 원"
         = link_to '자세히 보기', report_path(report), class:'btn btn-info'
-        - if @in_cart
+        - if (user_signed_in? && current_user.in_cart?(report))
           %span.btn.diabled 장바구니 안
         
-        - elsif not(@buy_this)
+        - elsif not(user_signed_in? && current_user.buy_this?(report))
           = link_to buckets_path(current_user, bucket_item_type: "Report", bucket_item_id: report.id), class: "btn", method: 'post' do
             %span 카트에 담기
