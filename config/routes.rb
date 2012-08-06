@@ -1,6 +1,4 @@
 Koreport::Application.routes.draw do
-  get "buckets/index"
-
   root :to => 'koreport#index'
 
   match 'search' => 'koreport#search', :as => :search
