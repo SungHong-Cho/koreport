@@ -7,11 +7,12 @@
     %th{ width: '100px' } 미리보기
     %th{ width: '100px' } 뷰어로 보기
   %tbody
-    %tr
-      - if @reports.nil? || @reports.empty?
+    - if @reports.nil? || @reports.empty?
+      %tr
         %td.nothing{ colspan: 6 } 구매하신 일반 상품이 없습니다.
-      - else
-        - @reports.each do |report|
+    - else
+      - @reports.each do |report|
+        %tr
           %td= (report.purchase(current_user).created_at).strftime("%y-%m-%d")
           %td= report.title
           %td= "#{report.page} Page"

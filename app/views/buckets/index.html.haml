@@ -51,8 +51,8 @@
                       %td= check_box_tag "report_item_ids[]", item.id
                     %tr
                       %td{ colspan: 6 }
-                        .row.collapse{ id: "report#{index}" }
-                          .span12
+                        .row-fluid
+                          .span12.collapse{ id: "report#{index}" }
                             %p= print_compact(item.intro)
           .row{ style: "text-align: right"}
             .span12
