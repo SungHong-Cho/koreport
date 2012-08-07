@@ -1,27 +1,33 @@
 .window
   .row.window-bar
-    = render 'shared/flash', object: flash
     .span2.window-label
       %span= ' 로그인 '
     .span10
       %span.trace 홈 > 로그인
+    .span12
+      = render 'shared/error_messages'
   .content
     .row.sign-in-form
       .span7.form
         = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal"}) do |f|
           .sign-in
             .row
+              .span5
+                .row
+                  .span2
+                    = f.label 'E-mail', class: 'control-label'
+                  .span3
+                    = f.email_field :email, required: false, autofocus: true
+                .row
+                  .span2
+                    = f.label 'password', class: 'control-label'
+                  .span3
+                    = f.password_field :password, required: false
+                
               .span2
-                = f.label 'E-mail', class: 'control-label'
-              .span3
-                = f.email_field :email, required: false, autofocus: true
-              .span2
-                = f.button '로그 인', class: 'btn btn-primary', id: 'login_button'
-            .row
-              .span2
-                = f.label 'password', class: 'control-label'
-              .span3
-                = f.password_field :password, required: false
+                .row
+                  .span2
+                    = f.button '로그 인', class: 'btn btn-primary', id: 'login_button'
     .row
       .span5.info-text
         %span 아이디(E-mail)과 비밀번호가 생각나지 않으세요?

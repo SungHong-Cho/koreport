@@ -1,0 +1,5 @@
+- unless flash.nil?
+  - flash.each do |key, msg|
+    .alert.fade.in
+      %button.close{ type: 'button', 'data-dismiss' => 'alert' } &times
+      %strong= msg

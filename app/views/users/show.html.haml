@@ -1,5 +1,5 @@
-.row
-  .span2.offset2title 마이 페이지
+.row.my-page
+  .span2.offset2.title 마이 페이지
   .span2.offset6.email= current_user.email if user_signed_in?
 - content_for :below do
   .row
@@ -17,18 +17,9 @@
           %span 홈 > 마이페이지 >
           %span 구매내역 관리
         .content
-          %h3 1. 패키지 구입상품
-          - if @packages && @packages.any?
-            = render 'package_list', locals: { packages: @packages }
-          - else
-            %br
-            %h4 구매하신 상품이 없습니다.
-            %br
+          %h3 [ 패키지 상품 ]
+          = render 'package_list', locals: { packages: @packages }
 
-          %h3 2. 리포트 구입상품
-          - if @reports && @reports.any?
-            = render 'report_list', locals: { reports: @reports }
-          - else
-            %br
-            %h4 구매하신 상품이 없습니다.
-            %br
+
+          %h3 [ 일반 상품 ]
+          = render 'report_list', locals: { reports: @reports }

@@ -1,40 +1,52 @@
 %table.table.table-stripped.package-list
   %thead
     %tr
-      %th{ width: '302px'} 제목
-      %th{ width: '85px' } 자소서 수
-      %th{ width: '61px' } 상품가격
-      %th{ width: '64px' } 할인가격
-      %th{ width: '67px' } 구매가격
-      %th{ width: '60px' } 내용
+      %th{ width: '300px'} 제목
+      %th{ width: '65px' } 자소서 수
+      %th{ width: '65px' } 상품가격
+      %th{ width: '65px' } 할인가격
+      %th{ width: '65px' } 구매가격
+      %th{ width: '65px' } 내용
   %tbody
-    - @packages.each_with_index do |package, index|
-      %tr
+    %tr
+    - if @packages.nil? || @packages.empty?
+      %td.nothing{ colspan: 6 } 구매하신 패키지 상품이 없습니다.
+    - else
+      - @packages.each_with_index do |package, index|
         %td.title= link_to "#{package.name}", package_path(package)
         %td.count= "#{package.reports.count} 개"
         %td.price= "#{package.original_price} 원"
         %td.dc= "#{package.discount} 원"
         %td.sum= "#{package.price} 원"
         %td
-          %button.btn.btn-success{'data-toggle' => 'collapse', 'data-target' => "#package#{index}"} 보기
-      %tr
-        %td{ colspan: '6' }
-          .row-fluid.collapse{ id: "package#{index}" }
-            .span12
-              %table.table.table-stripped.report-list
-                %thead
-                  %th{ width: '430px' } 제목
-                  %th{ width: '70px' } 페이지 수
-                  %th{ width: '70px' } 가격
-                  %th{ width: '100px' } 미리보기
-                  %th{ width: '100px' } 뷰어로 보기
-                %tbody
-                  - package.reports.all.each do |report|
-                    %tr
-                      %td= report.title
-                      %td= "#{report.page} Page"
-                      %td= "#{report.grade_price} 원"
-                      %td
-                        = link_to '프린트', print_report_path(report), class: "btn"
-                      %td
-                        = link_to '보기', view_report_path(report), class: "btn btn-info"
+          - if current_user.pay_this?(package)
+            %button.btn.btn-success{'data-toggle' => 'collapse', 'data-target' => "#package#{index}"} 보기
+          - else
+            %button.btn.btn-success{'data-toggle' => 'collapse', 'data-target' => "#package#{index}"} 대기 중
+        %tr
+          %td{ colspan: '6' }
+            .row-fluid.collapse{ id: "package#{index}" }
+              .span12
+                %table.table.table-stripped.report-list
+                  %thead
+                    %th{ width: '430px' } 제목
+                    %th{ width: '70px' } 페이지 수
+                    %th{ width: '70px' } 가격
+                    %th{ width: '100px' } 미리보기
+                    %th{ width: '100px' } 뷰어로 보기
+                  %tbody
+                    - package.reports.all.each do |report|
+                      %tr
+                        %td= report.title
+                        %td= "#{report.page} Page"
+                        %td= "#{report.grade_price} 원"
+                        - if current_user.pay_this?(report)
+                          %td
+                            = link_to '프린트', print_report_path(report), class: "btn"
+                          %td
+                            = link_to '보기', view_report_path(report), class: "btn btn-info"
+                        - else
+                          %td
+                            = link_to '대기중', '#', class: "btn diabled"
+                          %td
+                            = link_to '대기중', '#', class: "btn btn-info diabled"

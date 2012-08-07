@@ -24,5 +24,4 @@ module KoreportHelper
       text[0,140]
     end
   end
-
 end

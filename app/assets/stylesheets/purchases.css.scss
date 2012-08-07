@@ -4,6 +4,7 @@
 .package-list, .report-list {
     thead {
         border-bottom: 3px solid #157bdc;
+        background-color: #F4F4F4;
         th {
             text-align: center;
         }
@@ -11,6 +12,9 @@
     tbody {
         td {
             text-align: center;
+        }
+        td.nothing {
+            color: #A5A3A3;
         }
         .sum {
             color: #F00;

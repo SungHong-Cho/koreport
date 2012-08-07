@@ -1,19 +1,28 @@
 %table.table.table-stripped.report-list
   %thead
     %th{ width: '130px' } 구입일
-    %th{ width: '430px' } 제목
-    %th{ width: '70px' } 페이지 수
-    %th{ width: '70px' } 가격
+    %th{ width: '410px' } 제목
+    %th{ width: '80px' } 페이지 수
+    %th{ width: '80px' } 가격
     %th{ width: '100px' } 미리보기
     %th{ width: '100px' } 뷰어로 보기
   %tbody
-    - @reports.each do |report|
-      %tr
-        %td= (report.purchase(current_user).created_at).strftime("%y년 %m월 %d일")
-        %td= report.title
-        %td= "#{report.page} Page"
-        %td= "#{report.grade_price} 원"
-        %td
-          = link_to '프린트', print_report_path(report), class: "btn"
-        %td
-          = link_to '보기', view_report_path(report), class: "btn btn-info"
+    %tr
+      - if @reports.nil? || @reports.empty?
+        %td.nothing{ colspan: 6 } 구매하신 일반 상품이 없습니다.
+      - else
+        - @reports.each do |report|
+          %td= (report.purchase(current_user).created_at).strftime("%y-%m-%d")
+          %td= report.title
+          %td= "#{report.page} Page"
+          %td= "#{report.grade_price} 원"
+          - if current_user.pay_this?(report)
+            %td
+              = link_to '프린트', print_report_path(report), class: "btn"
+            %td
+              = link_to '보기', view_report_path(report), class: "btn btn-info"
+          - else
+            %td
+              = link_to '대기중', '#', class: "btn diabled"
+            %td
+              = link_to '대기중', '#', class: "btn btn-info diabled"

@@ -1,46 +1,68 @@
 - content_for :below do
   .bucket
     .row
-      .span12
-        = image_tag('bucket_label.png', alt: '장바구니')
-    = form_tag buckets_path(current_user), id: 'form_bucket', method: :get do
-      - if @packages.empty?
-        %h3 * 장바구니에 담겨진 패키지 상품이 없습니다.
-      - else
-        %table.table.table-stripped.list
-          %thead
-            %th 제목
-            %th 자소서 수
-            %th 상품가격
-            %th 할인가격
-            %th 합계
-            %th 선택
-          %tbody
-            - @packages.each do |item|
-              %tr
-                %td= item.name
-                %td= "#{item.reports.count} 개"
-                %td= item.original_price
-                %td= item.discount
-                %td= item.price
-                %td= check_box_tag "package_item_ids[]", item.id
-      - if @reports.empty?
-        %h3 * 장바구니에 담겨진 자기소개서 상품이 없습니다.
-      - else
-        %table.table.table-stripped.list
-          %thead
-            %th 제목
-            %th 페이지 수
-            %th 상품가격
-            %th 선택
-          %tbody
-            - @reports.each do |item|
-              %tr
-                %td= item.title
-                %td= "#{item.page} Page"
-                %td.sum= item.grade_price
-                %td= check_box_tag "report_item_ids[]", item.id
-      .row{ style: "text-align: right"}= submit_tag "선택항목 지우기", id: 'delete_button', class: "btn btn-info"
-      .row
-        .span12{ style: "text-align: center" }
-          = submit_tag "구매하기", id: 'buy_button', class: "btn btn-large"
+      .span10
+        .title
+          = image_tag('bucket_label.png', alt: '장바구니')
+        .content
+          = form_tag buckets_path(current_user), id: 'form_bucket', method: :get do
+            %h3 [ 패키지 상품 ]
+            %table.table.table-stripped.package-list
+              %thead
+                %th{ width: '400px' } 제목
+                %th{ width: '70px' } 자소서 수
+                %th{ width: '70px' } 상품가격
+                %th{ width: '70px' } 할인가격
+                %th{ width: '70px' } 구매가격
+                %th{ width: '50px' } 선택
+              %tbody
+                %tr
+                  - if @packages.empty?
+                    %td.nothing{ colspan: 6 } 장바구니에 담겨진 패키지 상품이 없습니다.
+                  - else
+                    - @packages.each do |item|
+                      %td= item.name
+                      %td= "#{item.reports.count} 개"
+                      %td= item.original_price
+                      %td= item.discount
+                      %td= item.price
+                      %td= check_box_tag "package_item_ids[]", item.id
+                  
+            %h3 [ 일반 상품 ]
+            %table.table.table-stripped.report-list
+              %thead
+                %th{ width: '500px' } 제목
+                %th{ width: '80px' } 페이지 수
+                %th{ width: '80px' } 상품가격
+                %th{ width: '100px' } 미리보기
+                %th{ width: '50px' } 선택
+              %tbody
+                - if @reports.empty?
+                  %tr
+                    %td.nothing{ colspan: 6 } 장바구니에 담겨진 일반 상품이 없습니다.
+                - else
+                  - @reports.each_with_index do |item, index|
+                    %tr
+                      %td= item.title
+                      %td= "#{item.page} Page"
+                      %td.sum= item.grade_price
+                      %td
+                        %button.btn{'data-toggle' => 'collapse', 'data-target' => "#report#{index}"} 미리보기
+                      %td= check_box_tag "report_item_ids[]", item.id
+                    %tr
+                      %td{ colspan: 6 }
+                        .row.collapse{ id: "report#{index}" }
+                          .span12
+                            %p= print_compact(item.intro)
+          .row{ style: "text-align: right"}
+            .span12
+              = submit_tag "선택항목 지우기", id: 'delete_button', class: "btn btn-info"
+          .row-fluid
+            .span6
+              %span * 고객님이 선택하신 상품의 금액 합계입니다.
+            .span2
+              %span 상품금액 합계:
+            .span2
+              %span= "#{item_price_sum(@reports)} 원"
+            .span4
+              = submit_tag "구매하기", id: 'buy_button', class: "btn btn-large"

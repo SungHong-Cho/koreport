@@ -23,17 +23,22 @@
     .sign-up
       .row
         .span7
-          = render 'shared/flash'
-          = image_tag 'sign_up_label.png'
-          %h3.sign-up-guide 이메일과 비밀번호만 입력하시면 회원가입이 가능합니다!
-          = form_for(User.new, as: :user, url: registration_path(:user), html: {class: "form-inline"}) do |f|
-            = f.email_field :email, placeholder: "e-mail", class: "span3 input"
-            = f.password_field :password, placeholder: "비밀번호", class: "span3 input"
-            = f.submit "회원가입!", class: "btn btn-primary"
-            %span 가입 시
-            = link_to '이용약관', legal_path
-            %span 및
-            = link_to '개인정보보호', personal_path
-            %span 에 동의합니다.
-        .span5
+          .row
+            .span7
+              = image_tag 'sign_up_label.png'
+              %h4.sign-up-guide 이메일과 비밀번호만 입력하시면 회원가입이 가능합니다!
+          .row
+            .span7
+              = form_for(User.new, as: :user, url: registration_path(:user), html: {class: "form-inline"}) do |f|
+                = f.email_field :email, placeholder: "e-mail", class: "span3 input"
+                = f.password_field :password, placeholder: "비밀번호", class: "span3 input"
+                = f.submit "회원가입!", class: "btn btn-primary"
+          .row
+            .span7
+              %span 가입 시
+              = link_to '이용약관', legal_path
+              %span 및
+              = link_to '개인정보보호', personal_path
+              %span 에 동의합니다.
+        .span5.sign-up-now
           = image_tag 'sign_up_now.png'
