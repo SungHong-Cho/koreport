@@ -8,23 +8,24 @@
       %th{ width: '65px' } 구매가격
       %th{ width: '65px' } 내용
   %tbody
-    %tr
     - if @packages.nil? || @packages.empty?
-      %td.nothing{ colspan: 6 } 구매하신 패키지 상품이 없습니다.
+      %tr
+        %td.nothing{ colspan: 6 } 구매하신 패키지 상품이 없습니다.
     - else
       - @packages.each_with_index do |package, index|
-        %td.title= link_to "#{package.name}", package_path(package)
-        %td.count= "#{package.reports.count} 개"
-        %td.price= "#{package.original_price} 원"
-        %td.dc= "#{package.discount} 원"
-        %td.sum= "#{package.price} 원"
-        %td
-          - if current_user.pay_this?(package)
-            %button.btn.btn-success{'data-toggle' => 'collapse', 'data-target' => "#package#{index}"} 보기
-          - else
-            %button.btn.btn-success{'data-toggle' => 'collapse', 'data-target' => "#package#{index}"} 대기 중
         %tr
-          %td{ colspan: '6' }
+          %td.title= link_to "#{package.name}", package_path(package)
+          %td.count= "#{package.reports.count} 개"
+          %td.price= "#{package.original_price} 원"
+          %td.dc= "#{package.discount} 원"
+          %td.sum= "#{package.price} 원"
+          %td
+            - if current_user.pay_this?(package)
+              %button.btn.btn-success{'data-toggle' => 'collapse', 'data-target' => "#package#{index}"} 보기
+            - else
+              %button.btn.btn-success{'data-toggle' => 'collapse', 'data-target' => "#package#{index}"} 대기 중
+        %tr
+          %td.expand{ colspan: '6' }
             .row-fluid.collapse{ id: "package#{index}" }
               .span12
                 %table.table.table-stripped.report-list

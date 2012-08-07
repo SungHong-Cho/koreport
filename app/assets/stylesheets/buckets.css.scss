@@ -30,3 +30,13 @@
         }
     }
 }
+
+.bucket-result {
+    border: 2px solid #F00;
+    padding: 10px 10px;
+    div[class*="span"]{
+        text-align: center;
+        line-height: 28px;
+        vertical-align: center;
+    }
+}

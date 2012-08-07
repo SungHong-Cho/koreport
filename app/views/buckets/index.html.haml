@@ -1,7 +1,7 @@
 - content_for :below do
-  .bucket
-    .row
-      .span10
+  .row
+    .span12
+      .frame
         .title
           = image_tag('bucket_label.png', alt: '장바구니')
         .content
@@ -16,18 +16,19 @@
                 %th{ width: '70px' } 구매가격
                 %th{ width: '50px' } 선택
               %tbody
-                %tr
-                  - if @packages.empty?
+                - if @packages.empty?
+                  %tr
                     %td.nothing{ colspan: 6 } 장바구니에 담겨진 패키지 상품이 없습니다.
-                  - else
-                    - @packages.each do |item|
+                - else
+                  - @packages.each do |item|
+                    %tr
                       %td= item.name
                       %td= "#{item.reports.count} 개"
                       %td= item.original_price
                       %td= item.discount
                       %td= item.price
                       %td= check_box_tag "package_item_ids[]", item.id
-                  
+                
             %h3 [ 일반 상품 ]
             %table.table.table-stripped.report-list
               %thead
@@ -47,22 +48,25 @@
                       %td= "#{item.page} Page"
                       %td.sum= item.grade_price
                       %td
-                        %button.btn{'data-toggle' => 'collapse', 'data-target' => "#report#{index}"} 미리보기
+                        %a.btn{ 'data-toggle' => 'collapse', 'data-target' => "#report#{index}" } 미리보기
                       %td= check_box_tag "report_item_ids[]", item.id
                     %tr
-                      %td{ colspan: 6 }
-                        .row-fluid
-                          .span12.collapse{ id: "report#{index}" }
+                      %td.expand{ colspan: 6 }
+                        .row-fluid.collapse{ id: "report#{index}" }
+                          .span12
                             %p= print_compact(item.intro)
-          .row{ style: "text-align: right"}
-            .span12
-              = submit_tag "선택항목 지우기", id: 'delete_button', class: "btn btn-info"
-          .row-fluid
-            .span6
-              %span * 고객님이 선택하신 상품의 금액 합계입니다.
-            .span2
-              %span 상품금액 합계:
-            .span2
-              %span= "#{item_price_sum(@reports)} 원"
-            .span4
-              = submit_tag "구매하기", id: 'buy_button', class: "btn btn-large"
+                            
+            .row{ style: "text-align: right"}
+              .span12
+                = submit_tag "선택항목 지우기", id: 'delete_button', class: "btn btn-info"
+            .row-fluid
+              .span12.bucket-result
+                .row-fluid
+                  .span6
+                    %span * 고객님이 선택하신 상품의 금액 합계입니다.
+                  .span2
+                    %span 상품금액 합계:
+                  .span1
+                    %span= "#{item_price_sum(@reports)} 원"
+                  .span3
+                    = submit_tag "구매하기", id: 'buy_button', class: "btn"
