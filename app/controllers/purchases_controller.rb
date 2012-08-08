@@ -65,7 +65,7 @@ class PurchasesController < ApplicationController
     end
 
     if @packages.any?
-      @goodname = "[koreport]#{@packages.name}"
+      @goodname = "[koreport]#{@packages.first.name}"
     else
       @goodname = "[koreport]#{@reports.first.title} #{'...' if @reports.length > 1}"
     end
