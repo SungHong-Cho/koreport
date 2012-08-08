@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "106.187.38.76", :web, :app, :db, primary: true
+server "106.187.102.75", :web, :app, :db, primary: true
 
 set :application, "koreport"
 set :user, "deployer"
@@ -9,7 +9,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@github.com:darkzin/#{application}.git"
+set :repository, "git@github.com:sunghong-cho/#{application}.git"
 set :branch, "master"
 
 default_run_options[:pty] = true

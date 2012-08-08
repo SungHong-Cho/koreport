@@ -26,38 +26,50 @@
 
       %h3 3. 결제정보
       .row-fluid
-        = form_for :user, url: purchases_path(reports: @reports, packages: @packages), html: { class: "form-horizontal" } do |f|
+        = form_tag purchases_path(reports: @reports, packages: @packages), class: "form-horizontal", name: 'PGIOForm' do
           = render 'layouts/error_messages'
           .span6
-            %p * 지금은 계좌이체를 통한 구매만 가능합니다.
-            %p 결제금액을
-            %h4 우리은행 (주) 코리포트 1006-601-376616
-            %p 으로 입금하시면 즉시 서비스를 이용하실 수 있습니다.
-            .account
-              %p 입금자 확인을 위해 정확한 정보를 입력해주세요.
-              %fieldset
-                .control-group
-                  = f.label '입금자', class: "control-label"
-                  .controls
-                    = f.text_field :payer_name
+            %fieldset
+              .control-group
+                = label_tag :paymethod, 'credit card', class: "control-label"
+                .controls
+                  = radio_button_tag :paymethod, 'card', true
+              .control-group
+                = label_tag :paymethod, 'realtime account', class: "control-label"
+                .controls
+                  = radio_button_tag :paymethod, '4'
+              .control-group
+                = label_tag :paymethod, 'cellphone', class: "control-label"
+                .controls
+                  = radio_button_tag :paymethod, '801'
+            = text_field_tag :receipttoname, '이름'
+            = password_field_tag :socialnumber, ''
+            = hidden_field_tag :mid, 'koreport'
+            = hidden_field_tag :goodname, @goodname
+            = hidden_field_tag :unitprice, @total_price
+            = hidden_field_tag :langcode, 'KR'
+            = hidden_field_tag :goodcurrency, 'WON'
+            = hidden_field_tag :cardquota, ''
+            = hidden_field_tag :cardexpiremonth, ''
+            = hidden_field_tag :cardexpireyear, ''
+            = hidden_field_tag :cardsecretnumber, ''
+            = hidden_field_tag :cardownernumber, ''
+            = hidden_field_tag :cardtype, ''
+            = hidden_field_tag :cardnumber, ''
+            = hidden_field_tag :cardauthcode, ''
+            = hidden_field_tag :socialauthcode, ''
+            = hidden_field_tag :carrier, ''
+            = hidden_field_tag :receipttotel, ''
+            = hidden_field_tag :receipttosocialnumber, ''
+            = hidden_field_tag :replycode, ''
+            = hidden_field_tag :replyMsg, ''
 
-                .control-group
-                  = f.label '은행', class: "control-label"
-                  .controls
-                    = f.text_field :bank
-
-                .control-group
-                  = f.label '계좌번호', class: "control-label"
-                  .controls
-                    = f.text_field :account
-                          
-                .control-group
-                  = f.label '전화번호', class: "control-label"
-                  .controls
-                    = f.text_field :tel
 
           .span6
             %h3 4. 결제하기
             %h4 최종결제금액
             %span.label.label-large= "#{@total_price} 원"
-            = f.submit "결제하기", class: "btn btn-large btn-primary"
+            = link_to "결제하기", '#', class: "btn btn-large btn-primary", onclick: 'startPayment();'
+
+
+      %div{id: 'PGIOscreen'}
