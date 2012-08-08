@@ -29,19 +29,11 @@
         = form_tag purchases_path(reports: @reports, packages: @packages), class: "form-horizontal", name: 'PGIOForm' do
           = render 'layouts/error_messages'
           .span6
-            %fieldset
-              .control-group
-                = label_tag :paymethod, 'credit card', class: "control-label"
-                .controls
-                  = radio_button_tag :paymethod, 'card', true
-              .control-group
-                = label_tag :paymethod, 'realtime account', class: "control-label"
-                .controls
-                  = radio_button_tag :paymethod, '4'
-              .control-group
-                = label_tag :paymethod, 'cellphone', class: "control-label"
-                .controls
-                  = radio_button_tag :paymethod, '801'
+            %select{name:'paymethod'}
+              %option{ value: ''}
+              %option{ value: 'card'}신용카드
+              %option{ value: '4'}실시간 계좌이체
+              %option{ value: '801'}휴대폰 소액 결제
             = text_field_tag :receipttoname, '이름'
             = password_field_tag :socialnumber, ''
             = hidden_field_tag :mid, 'koreport'
