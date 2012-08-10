@@ -7,14 +7,15 @@ function getPGIOresult() {
 }
  
 function callbacksuccess() {
-   var replycode = getPGIOElement('replycode')
+   var replycode = getPGIOElement('replycode');
+   var replyMsg = getPGIOElement('replyMsg');
    if (replycode == '0000') {
      // 거래성공 경우 for transaction success
     //document.PGIOForm.action = '/purchases';
      document.PGIOForm.submit();
    } else {
      // 거래실패 경우 for transaction failuer
-     alert("결제가 실패했습니다. 다시 이용해 주세요");
+     alert(replyMsg);
 	history.back();
     }
 }
